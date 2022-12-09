@@ -1,0 +1,21 @@
+<nav>
+    <button routerLink="/">
+        Home
+    </button>
+
+    <ng-container *ngIf="!isLoggedIn">
+        <button routerLink="/login">
+            Login
+        </button>
+        
+        <button routerLink="/register">
+            Register
+        </button>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn">
+        <button (click)="logout()" >
+            Logout
+        </button>
+    </ng-container>
+</nav>

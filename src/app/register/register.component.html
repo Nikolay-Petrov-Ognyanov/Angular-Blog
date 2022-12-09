@@ -1,0 +1,33 @@
+<form #form="ngForm" (ngSubmit)="onRegister(form)" *ngIf="!isLoggedIn">
+    <h2>
+        Register
+    </h2>
+    
+    <input placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required>
+
+    <input placeholder="Enter password" type="password" name="password"#password="ngModel" ngModel required [minlength]="6">
+
+    <ng-container *ngIf="email.touched" >
+        <p class="error" *ngIf="email.errors?.['required']">
+            Email is required!
+        </p>
+
+        <p class="error" *ngIf="email.errors?.['email']">
+            Email is not valid!
+        </p>
+    </ng-container>
+
+    <ng-container *ngIf="password.touched">
+        <p class="error" *ngIf="password.errors?.['required']">
+            Password is required!
+        </p>
+
+        <p class="error" *ngIf="password.errors?.['minlength']">
+            Password must be at least 6 characters long!
+        </p>
+    </ng-container>
+
+    <button [disabled]="form.invalid" >
+        Register
+    </button>
+</form>
