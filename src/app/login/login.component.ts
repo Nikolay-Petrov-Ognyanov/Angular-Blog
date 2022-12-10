@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { NgForm } from '@angular/forms';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

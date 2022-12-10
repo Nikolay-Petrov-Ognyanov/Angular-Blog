@@ -16,8 +16,8 @@ export class RegisterComponent {
 
   @ViewChild(
     NgForm,
-    {static: true}
-  ) form! : ElementRef<HTMLInputElement>
+    { static: true }
+  ) form!: ElementRef<HTMLInputElement>
 
   get isLoggedIn() {
     return !!localStorage.getItem("user")
@@ -28,7 +28,7 @@ export class RegisterComponent {
       return
     }
 
-    const {email, password} = form.value
+    const { email, password } = form.value
 
     await this.firebaseService.register(email, password)
 
