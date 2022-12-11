@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from "@angular/fire/compat"
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,11 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FirebaseService } from './services/firebase.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostService } from './services/post.service';
 import { PostDetailsComponent } from './post-details/post-details.component';
-
 
 @NgModule({
   declarations: [

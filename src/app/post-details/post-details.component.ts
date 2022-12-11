@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Post } from '../post.model';
+import { CreatePostComponent } from '../create-post/create-post.component';
 import { PostService } from '../services/post.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class PostDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService,
+    public postService: PostService,
     private router: Router
   ) { }
 
@@ -23,7 +23,13 @@ export class PostDetailsComponent {
 
   readPost(): any {
     const id = this.route.snapshot.paramMap.get("id")
-
+    
     return this.postService.readPost(id!).subscribe(data => this.post = data)
+  }
+
+  deletePost(): any {
+    const id: any = this.route.snapshot.paramMap.get("id")
+
+    return this.postService.deletePost(id)
   }
 }

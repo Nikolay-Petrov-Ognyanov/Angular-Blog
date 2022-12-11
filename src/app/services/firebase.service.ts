@@ -6,9 +6,7 @@ import { catchError } from "rxjs"
   providedIn: 'root'
 })
 export class FirebaseService {
-  constructor(
-    public angularFireAuth: AngularFireAuth
-  ) { }
+  constructor(public angularFireAuth: AngularFireAuth) { }
 
   get isLoggedIn() {
     return !!localStorage.getItem("user")

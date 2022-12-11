@@ -7,26 +7,7 @@ import { map } from "rxjs"
   providedIn: 'root'
 })
 export class PostService {
-  // postsCollection!: AngularFirestoreCollection<Post>
-  // postDoc!: AngularFirestoreDocument<Post>
-
-  constructor(
-    private angularFirestore: AngularFirestore,
-  ) {
-    // this.postsCollection = this.angularFirestore
-    //   .collection("posts", ref => ref.orderBy("published", "desc"))
-  }
-
-  // readAllPosts() {
-  //   return this.postsCollection.snapshotChanges().map(actions => {
-  //     return actions.map(action => {
-  //       const data = action.payload.doc.data() as Post
-  //       const id = action.payload.doc.id
-
-  //       return { id, ...data }
-  //     })
-  //   })
-  // }
+  constructor(private angularFirestore: AngularFirestore) { }
 
   readAllPosts() {
     return this.angularFirestore
@@ -60,10 +41,10 @@ export class PostService {
       })
   }
 
-  deletePost(post: Post) {
+  deletePost(id: string) {
     return this.angularFirestore
       .collection("posts")
-      .doc(post.id)
+      .doc(id)
       .delete()
   }
 }

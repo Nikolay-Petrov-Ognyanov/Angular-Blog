@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.readAllPosts().subscribe(res => {
-      this.posts = res.map(e => {
+      this.posts = res.map(p => {
         return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data() as {}
+          id: p.payload.doc.id,
+          ...p.payload.doc.data() as {}
         } as Post
       })
     })
