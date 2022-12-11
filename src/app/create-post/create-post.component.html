@@ -1,0 +1,17 @@
+<form [formGroup]="createPostForm" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+        <input type="text" formControlName="title" class="form-control" placeholder="Title" required>
+    </div>
+    
+    <div>
+        <input type="text" formControlName="content" class="form-control" placeholder="Content" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!createPostForm.valid" >
+        Create
+    </button>
+
+    <button type="reset" class="btn btn-danger" >
+        Reset
+    </button>
+</form>

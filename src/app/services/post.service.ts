@@ -1,21 +1,34 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Post } from '../post.model';
+import { map } from "rxjs"
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private angularFirestore: AngularFirestore) { }
+  // postsCollection!: AngularFirestoreCollection<Post>
+  // postDoc!: AngularFirestoreDocument<Post>
 
-  getPostDoc(id: string) {
-    return this.angularFirestore
-      .collection("posts")
-      .doc(id)
-      .valueChanges()
+  constructor(
+    private angularFirestore: AngularFirestore,
+  ) {
+    // this.postsCollection = this.angularFirestore
+    //   .collection("posts", ref => ref.orderBy("published", "desc"))
   }
 
-  getPostList() {
+  // readAllPosts() {
+  //   return this.postsCollection.snapshotChanges().map(actions => {
+  //     return actions.map(action => {
+  //       const data = action.payload.doc.data() as Post
+  //       const id = action.payload.doc.id
+
+  //       return { id, ...data }
+  //     })
+  //   })
+  // }
+
+  readAllPosts() {
     return this.angularFirestore
       .collection("posts")
       .snapshotChanges()
@@ -30,6 +43,13 @@ export class PostService {
     })
   }
 
+  readPost(id: string) {
+    return this.angularFirestore
+      .collection("posts")
+      .doc(id)
+      .valueChanges()
+  }
+
   updatePost(post: Post, id: string) {
     return this.angularFirestore
       .collection("posts")
@@ -37,7 +57,7 @@ export class PostService {
       .update({
         title: post.title,
         content: post.content
-    })
+      })
   }
 
   deletePost(post: Post) {

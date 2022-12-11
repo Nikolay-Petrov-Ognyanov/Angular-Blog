@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from "@angular/fire/compat"
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore"
-import { FormsModule } from "@angular/forms"
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FirebaseService } from './services/firebase.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { PostService } from './services/post.service';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CreatePostComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +40,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     AngularFirestoreModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [FirebaseService],
+  providers: [
+    FirebaseService,
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

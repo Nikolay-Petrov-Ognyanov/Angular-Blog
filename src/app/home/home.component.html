@@ -1,1 +1,15 @@
-Welcome!
+<h1>
+    Welcome!
+</h1>
+
+<ng-container *ngIf="posts">
+    <div *ngFor="let post of posts">
+        <h2>
+            {{post.title}}
+        </h2>
+
+        <button routerLink="/post/{{post.id}}">
+            Details
+        </button>
+    </div>
+</ng-container>

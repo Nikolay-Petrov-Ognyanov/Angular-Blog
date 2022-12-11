@@ -3,11 +3,18 @@
         Login
     </h2>
 
-    <input placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+    <div>
+        <input placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+    </div>
 
-    <input placeholder="Enter password" type="password" name="password"#password="ngModel" ngModel required [minlength]="6">
+    <div>
+        <input placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel required
+            [minlength]="6">
+    </div>
 
-    <ng-container *ngIf="email.touched" >
+
+    <ng-container *ngIf="email.touched">
         <p class="error" *ngIf="email.errors?.['required']">
             Email is required!
         </p>
@@ -27,7 +34,15 @@
         </p>
     </ng-container>
 
-    <button [disabled]="form.invalid" >
+    <button [disabled]="form.invalid">
         Login
     </button>
+
+    <div>
+        Don't have an account?
+
+        <a routerLink="/register">Register</a>
+
+        instead.
+    </div>
 </form>

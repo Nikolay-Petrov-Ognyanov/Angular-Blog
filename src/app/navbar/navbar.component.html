@@ -14,6 +14,10 @@
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn">
+        <button routerLink="/create">
+            Create
+        </button>
+
         <button (click)="logout()" >
             Logout
         </button>
