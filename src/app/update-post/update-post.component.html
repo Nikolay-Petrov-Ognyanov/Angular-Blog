@@ -1,0 +1,19 @@
+<form [formGroup]="updatePostForm" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+        <input type="text" value="{{post.title}}" formControlName="title" class="form-control" placeholder="Title"
+            required>
+    </div>
+
+    <div>
+        <input type="text" value="{{post.content}}" formControlName="content" class="form-control" placeholder="Content"
+            required>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!post.title || !post.content">
+        Save
+    </button>
+
+    <button type="button" (click)="returnToDetails()" class="btn btn-danger">
+        Cancel
+    </button>
+</form>

@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
-import { RegisterComponent } from './register/register.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 const routes: Routes = [
   {
@@ -13,12 +14,12 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "login",
-    component: LoginComponent
-  },
-  {
     path: "register",
     component: RegisterComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
   },
   {
     path: "create",
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: "post/:id",
     component: PostDetailsComponent
+  },
+  {
+    path: "post/:id/update",
+    component: UpdatePostComponent
   }
 ];
 

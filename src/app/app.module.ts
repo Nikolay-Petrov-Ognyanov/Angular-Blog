@@ -15,6 +15,7 @@ import { FirebaseService } from './services/firebase.service';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostService } from './services/post.service';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     RegisterComponent,
     LoginComponent,
     CreatePostComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    UpdatePostComponent
   ],
   imports: [
     BrowserModule,

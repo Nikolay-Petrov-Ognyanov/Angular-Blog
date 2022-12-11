@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth"
-import { catchError } from "rxjs"
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CreatePostComponent } from '../create-post/create-post.component';
 import { PostService } from '../services/post.service';
 
 @Component({
@@ -22,14 +21,21 @@ export class PostDetailsComponent {
   }
 
   readPost(): any {
-    const id = this.route.snapshot.paramMap.get("id")
+    const id: any = this.route.snapshot.paramMap.get("id")
     
     return this.postService.readPost(id!).subscribe(data => this.post = data)
+  }
+
+  updatePost(): any {
+    const id: any = this.route.snapshot.paramMap.get("id")
+
+    this.router.navigate([`post/${id}/update`])
   }
 
   deletePost(): any {
     const id: any = this.route.snapshot.paramMap.get("id")
 
+    this.router.navigate([""])
     return this.postService.deletePost(id)
   }
 }

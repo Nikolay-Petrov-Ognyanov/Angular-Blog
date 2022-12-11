@@ -9,19 +9,19 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent {
-  public createPostForm: FormGroup
-
   constructor(
     public postService: PostService,
     public formBuilder: FormBuilder,
     public router: Router
-  ) {
-    this.createPostForm = this.formBuilder.group({
-      title: [""],
-      content: [""]
-    })
-  }
-
+    ) {
+      this.createPostForm = this.formBuilder.group({
+        title: [""],
+        content: [""]
+      })
+    }
+    
+  public createPostForm: FormGroup
+  
   onSubmit() {
     this.postService.createPost(this.createPostForm.value)
     this.router.navigate([""])

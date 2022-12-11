@@ -23,6 +23,7 @@ export class LoginComponent {
     return !!localStorage.getItem("user")
 
   }
+  
   async onLogin(form: NgForm) {
     if (form.invalid) {
       return
