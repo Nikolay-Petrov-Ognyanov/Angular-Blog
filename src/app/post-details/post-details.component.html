@@ -1,29 +1,43 @@
-<h2>
+<h2 *ngIf="post.title">
     {{post.title}}
 </h2>
 
-<div>
+<div *ngIf="post.content">
     {{post.content}}
 </div>
 
-<div>
+<div *ngIf="post.author" >
     Created by {{post.author}}
 </div>
 
+<div>
+    <ng-container *ngIf="post.likes">
+        Likes {{post.likes}}
+    </ng-container>
+    
+    <ng-container *ngIf="post.dislikes">
+        Dislikes {{post.dislikes}}
+    </ng-container>
+</div>
+
 <ng-container *ngIf="user">
-    <ng-container *ngIf="post.author === user" >    
-        <button (click)="updatePost()" >
+    <ng-container *ngIf="post.author === user">
+        <button (click)="updatePost()">
             Update
         </button>
-        
-        <button (click)="deletePost()" >
+
+        <button (click)="deletePost()">
             Delete
         </button>
     </ng-container>
 
-    <ng-container *ngIf="post.authoer !== user">
-        <button (click)="likePost()" >
+    <ng-container *ngIf="post.author !== user">
+        <button (click)="likePost()">
             Like
+        </button>
+
+        <button (click)="dislikePost()">
+            Dislike
         </button>
     </ng-container>
 </ng-container>

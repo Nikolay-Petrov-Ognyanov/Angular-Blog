@@ -64,4 +64,23 @@ export class PostDetailsComponent {
       }
     })
   }
+
+  dislikePost() {
+    const postId: any = this.route.snapshot.paramMap.get("id")
+    const itemRef = this.angularFirestore.collection('posts').doc(postId)
+
+    itemRef.get().subscribe(post => {
+      if (!post.get("dislikes")) {
+        itemRef.set({
+          dislikes: 1
+        }, {
+          merge: true
+        })
+      } else {
+        itemRef.update({
+          dislikes: (post.get("dislikes")) + 1
+        })
+      }
+    })
+  }
 }
