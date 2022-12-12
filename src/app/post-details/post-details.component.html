@@ -20,4 +20,10 @@
             Delete
         </button>
     </ng-container>
+
+    <ng-container *ngIf="post.authoer !== user">
+        <button (click)="likePost()" >
+            Like
+        </button>
+    </ng-container>
 </ng-container>

@@ -13,7 +13,7 @@ export class PostDetailsComponent {
     private route: ActivatedRoute,
     public postService: PostService,
     private router: Router,
-    public firestore: AngularFirestore
+    public angularFirestore: AngularFirestore
   ) {
     if (this.isLoggedIn) {
       this.user = JSON.parse(localStorage.getItem("user") as any).email
@@ -44,5 +44,24 @@ export class PostDetailsComponent {
 
     this.router.navigate([""])
     return this.postService.deletePost(postId)
+  }
+
+  likePost() {
+    const postId: any = this.route.snapshot.paramMap.get("id")
+    const itemRef = this.angularFirestore.collection('posts').doc(postId)
+
+    itemRef.get().subscribe(post => {
+      if (!post.get("likes")) {
+        itemRef.set({
+          likes: 1
+        }, {
+          merge: true
+        })
+      } else {
+        itemRef.update({
+          likes: (post.get("likes")) + 1
+        })
+      }
+    })
   }
 }
