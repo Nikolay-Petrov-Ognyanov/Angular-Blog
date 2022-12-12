@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Post } from '../post.model';
-import { map } from "rxjs"
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private angularFirestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore) { }
 
   readAllPosts() {
-    return this.angularFirestore
+    return this.firestore
       .collection("posts")
       .snapshotChanges()
   }
 
   createPost(post: Post) {
     return new Promise<any>((resolve, reject) => {
-      this.angularFirestore
+      this.firestore
         .collection("posts")
         .add(post)
         .then(response => { console.log(response) }, error => reject(error))
@@ -25,14 +24,14 @@ export class PostService {
   }
 
   readPost(id: string) {
-    return this.angularFirestore
+    return this.firestore
       .collection("posts")
       .doc(id)
       .valueChanges()
   }
 
   updatePost(post: Post, id: string) {
-    return this.angularFirestore
+    return this.firestore
       .collection("posts")
       .doc(id)
       .update({
@@ -42,7 +41,7 @@ export class PostService {
   }
 
   deletePost(id: string) {
-    return this.angularFirestore
+    return this.firestore
       .collection("posts")
       .doc(id)
       .delete()

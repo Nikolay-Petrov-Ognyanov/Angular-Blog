@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "profile",
+    component: ProfileComponent
   },
   {
     path: "create",

@@ -16,6 +16,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { PostService } from './services/post.service';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UpdatePostComponent } from './update-post/update-post.component';
     LoginComponent,
     CreatePostComponent,
     PostDetailsComponent,
-    UpdatePostComponent
+    UpdatePostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

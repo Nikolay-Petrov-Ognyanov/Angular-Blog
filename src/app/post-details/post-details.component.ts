@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
 
@@ -7,35 +8,40 @@ import { PostService } from '../services/post.service';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
-export class PostDetailsComponent {
-  post = this.readPost()
-
+export class PostDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public postService: PostService,
-    private router: Router
+    private router: Router,
+    public firestore: AngularFirestore
   ) { }
+
+  post = this.readPost()
+
+  ngOnInit(): void {
+    console.log(this.post.createdBy)
+  }
 
   get isLoggedIn() {
     return !!localStorage.getItem("user")
   }
 
   readPost(): any {
-    const id: any = this.route.snapshot.paramMap.get("id")
-    
-    return this.postService.readPost(id!).subscribe(data => this.post = data)
+    const postId: any = this.route.snapshot.paramMap.get("id")
+
+    return this.postService.readPost(postId!).subscribe(data => this.post = data)
   }
 
   updatePost(): any {
-    const id: any = this.route.snapshot.paramMap.get("id")
+    const postId: any = this.route.snapshot.paramMap.get("id")
 
-    this.router.navigate([`post/${id}/update`])
+    this.router.navigate([`post/${postId}/update`])
   }
 
   deletePost(): any {
-    const id: any = this.route.snapshot.paramMap.get("id")
+    const postId: any = this.route.snapshot.paramMap.get("id")
 
     this.router.navigate([""])
-    return this.postService.deletePost(id)
+    return this.postService.deletePost(postId)
   }
 }

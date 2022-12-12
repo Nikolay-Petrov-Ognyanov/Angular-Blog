@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -9,6 +9,8 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./update-post.component.css']
 })
 export class UpdatePostComponent {
+  public updatePostForm: FormGroup
+
   constructor(
     private postService: PostService,
     private formBuilder: FormBuilder,
@@ -20,8 +22,6 @@ export class UpdatePostComponent {
       content: [""]
     })
   }
-
-  public updatePostForm: FormGroup
 
   post = this.readPost()
 
