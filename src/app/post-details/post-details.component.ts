@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -14,8 +14,13 @@ export class PostDetailsComponent {
     public postService: PostService,
     private router: Router,
     public firestore: AngularFirestore
-  ) { }
+  ) {
+    if (this.isLoggedIn) {
+      this.user = JSON.parse(localStorage.getItem("user") as any).email
+    }
+  }
 
+  user: any
   post = this.readPost()
 
   get isLoggedIn() {

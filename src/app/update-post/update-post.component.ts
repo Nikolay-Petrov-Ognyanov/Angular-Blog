@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
 

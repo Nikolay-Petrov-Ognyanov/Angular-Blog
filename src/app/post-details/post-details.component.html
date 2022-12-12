@@ -10,10 +10,14 @@
     Created by {{post.author}}
 </div>
 
-<button (click)="updatePost()" >
-    Update
-</button>
-
-<button (click)="deletePost()" >
-    Delete
-</button>
+<ng-container *ngIf="user">
+    <ng-container *ngIf="post.author === user" >    
+        <button (click)="updatePost()" >
+            Update
+        </button>
+        
+        <button (click)="deletePost()" >
+            Delete
+        </button>
+    </ng-container>
+</ng-container>
