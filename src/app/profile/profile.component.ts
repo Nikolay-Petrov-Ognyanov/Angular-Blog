@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Post } from '../post.model';
 import { PostService } from '../services/post.service';
 
 @Component({
@@ -6,15 +7,20 @@ import { PostService } from '../services/post.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   constructor(
-    public postService: PostService,
-  ) { }
-
-  user = JSON.parse(localStorage.getItem("user") as any)
-  userId = this.user.uid
-
-  ngOnInit(): void {
-
+    public postService: PostService
+  ) {
+    this.postService.readAllPosts().subscribe(res => {
+      this.posts = res.map(p => {
+        return {
+          id: p.payload.doc.id,
+          ...p.payload.doc.data() as {}
+        } as Post
+      })
+    })
   }
+
+  user = JSON.parse(localStorage.getItem("user") as any).email
+  posts!: Post[]
 }

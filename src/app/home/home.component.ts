@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Post } from '../post.model';
 import { PostService } from '../services/post.service';
 
@@ -7,12 +7,10 @@ import { PostService } from '../services/post.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  constructor(private postService: PostService) { }
-
-  posts!: Post[]
-
-  ngOnInit(): void {
+export class HomeComponent {
+  constructor(
+    private postService: PostService
+  ) {
     this.postService.readAllPosts().subscribe(res => {
       this.posts = res.map(p => {
         return {
@@ -22,4 +20,6 @@ export class HomeComponent implements OnInit {
       })
     })
   }
+
+  posts!: Post[]
 }

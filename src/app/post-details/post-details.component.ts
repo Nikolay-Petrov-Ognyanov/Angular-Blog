@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -8,7 +8,7 @@ import { PostService } from '../services/post.service';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
-export class PostDetailsComponent implements OnInit {
+export class PostDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     public postService: PostService,
@@ -17,10 +17,6 @@ export class PostDetailsComponent implements OnInit {
   ) { }
 
   post = this.readPost()
-
-  ngOnInit(): void {
-    console.log(this.post.createdBy)
-  }
 
   get isLoggedIn() {
     return !!localStorage.getItem("user")

@@ -1,1 +1,13 @@
-<p>profile works!</p>
+<ng-container *ngIf="posts">
+    <div *ngFor="let post of posts">
+        <ng-container *ngIf="post.author === user">
+            <h2>
+                {{post.title}}
+            </h2>
+
+            <button routerLink="/post/{{post.id}}">
+                Details
+            </button>
+        </ng-container>
+    </div>
+</ng-container>
