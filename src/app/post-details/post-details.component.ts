@@ -18,6 +18,29 @@ export class PostDetailsComponent {
     if (this.isLoggedIn) {
       this.user = JSON.parse(localStorage.getItem("user") as any).email
     }
+
+    const postId: any = this.route.snapshot.paramMap.get("id")
+    const itemRef = this.angularFirestore.collection('posts').doc(postId)
+
+    itemRef.get().subscribe(post => {
+      if (post.get("likes")) {
+        let likesArray = Array.from(post.get("likes"))
+
+        if (likesArray.includes(this.user)) {
+          this.postIsLikedByCurrentUser = true
+          this.postIsDislikedByCurrentUser = false
+        }
+      }
+
+      if (post.get("dislikes")) {
+        let dislikesArray = Array.from(post.get("dislikes"))
+
+        if (dislikesArray.includes(this.user)) {
+          this.postIsLikedByCurrentUser = false
+          this.postIsDislikedByCurrentUser = true
+        }
+      }
+    })
   }
 
   user: any
@@ -87,14 +110,26 @@ export class PostDetailsComponent {
     itemRef.get().subscribe(post => {
       if (!post.get("dislikes")) {
         itemRef.set({
-          dislikes: 1
+          dislikes: [this.user]
         }, {
           merge: true
         })
       } else {
-        itemRef.update({
-          dislikes: (post.get("dislikes")) + 1
-        })
+        let dislikesArray = Array.from(post.get("dislikes"))
+
+        if (!dislikesArray.includes(this.user)) {
+          let newUserArray = [this.user]
+          let mergeArray = dislikesArray.concat(newUserArray)
+
+          console.log(mergeArray)
+
+          itemRef.update({
+            dislikes: mergeArray
+          })
+
+          this.postIsLikedByCurrentUser = false
+          this.postIsDislikedByCurrentUser = true
+        }
       }
     })
   }
