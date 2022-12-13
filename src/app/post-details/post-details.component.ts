@@ -23,6 +23,9 @@ export class PostDetailsComponent {
   user: any
   post = this.readPost()
 
+  postIsLikedByCurrentUser!: boolean
+  postIsDislikedByCurrentUser!: boolean
+
   get isLoggedIn() {
     return !!localStorage.getItem("user")
   }
@@ -53,14 +56,26 @@ export class PostDetailsComponent {
     itemRef.get().subscribe(post => {
       if (!post.get("likes")) {
         itemRef.set({
-          likes: 1
+          likes: [this.user]
         }, {
           merge: true
         })
       } else {
-        itemRef.update({
-          likes: (post.get("likes")) + 1
-        })
+        let likesArray = Array.from(post.get("likes"))
+
+        if (!likesArray.includes(this.user)) {
+          let newUserArray = [this.user]
+          let mergeArray = likesArray.concat(newUserArray)
+
+          console.log(mergeArray)
+
+          itemRef.update({
+            likes: mergeArray
+          })
+
+          this.postIsLikedByCurrentUser = true
+          this.postIsDislikedByCurrentUser = false
+        }
       }
     })
   }
