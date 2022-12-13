@@ -73,6 +73,9 @@ export class PostDetailsComponent {
   }
 
   likePost() {
+    this.postIsLikedByCurrentUser = true
+    this.postIsDislikedByCurrentUser = false
+
     const postId: any = this.route.snapshot.paramMap.get("id")
     const itemRef = this.angularFirestore.collection('posts').doc(postId)
 
@@ -87,23 +90,20 @@ export class PostDetailsComponent {
         let likesArray = Array.from(post.get("likes"))
 
         if (!likesArray.includes(this.user)) {
-          let newUserArray = [this.user]
-          let mergeArray = likesArray.concat(newUserArray)
-
-          console.log(mergeArray)
-
+          likesArray.push(this.user)
+         
           itemRef.update({
-            likes: mergeArray
-          })
-
-          this.postIsLikedByCurrentUser = true
-          this.postIsDislikedByCurrentUser = false
+            likes: likesArray
+          })   
         }
       }
     })
   }
 
   dislikePost() {
+    this.postIsLikedByCurrentUser = false
+    this.postIsDislikedByCurrentUser = true
+
     const postId: any = this.route.snapshot.paramMap.get("id")
     const itemRef = this.angularFirestore.collection('posts').doc(postId)
 
@@ -118,17 +118,11 @@ export class PostDetailsComponent {
         let dislikesArray = Array.from(post.get("dislikes"))
 
         if (!dislikesArray.includes(this.user)) {
-          let newUserArray = [this.user]
-          let mergeArray = dislikesArray.concat(newUserArray)
-
-          console.log(mergeArray)
-
+          dislikesArray.push(this.user)
+         
           itemRef.update({
-            dislikes: mergeArray
+            dislikes: dislikesArray
           })
-
-          this.postIsLikedByCurrentUser = false
-          this.postIsDislikedByCurrentUser = true
         }
       }
     })
