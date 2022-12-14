@@ -3,6 +3,7 @@ import { Post } from '../post.model';
 import { PostService } from '../services/post.service';
 import { AngularFirestore } from "@angular/fire/compat/firestore"
 import { User } from '../user.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,8 @@ import { User } from '../user.model';
 export class ProfileComponent implements OnInit {
   constructor(
     public postService: PostService,
-    public angularFirestore: AngularFirestore
+    public angularFirestore: AngularFirestore,
+    private route: ActivatedRoute
   ) {
     this.postService
       .readAllPosts()
@@ -31,11 +33,20 @@ export class ProfileComponent implements OnInit {
       .subscribe(users => {
         this.users = users
       })
+
+    const userId: any = this.route.snapshot.paramMap.get("id")
+    const itemRef = this.angularFirestore.collection('users').doc(userId)
+
+    this.angularFirestore
+      .collection("users")
+      .doc(userId).valueChanges()
+      .subscribe(user => this.currentUser = user)
   }
 
   ngOnInit(): void { }
 
+  currentUser: any
   users!: any
-  userEmail = JSON.parse(localStorage.getItem("user") as any).email
+  authorEmail = JSON.parse(localStorage.getItem("user") as any).email
   posts!: Post[]
 }

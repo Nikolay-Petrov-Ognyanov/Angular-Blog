@@ -1,18 +1,16 @@
 <ng-container *ngIf="users">
     <ng-container *ngFor="let user of users">
-        <ng-container *ngIf="user.email === userEmail">
-            <ng-container *ngIf="!user.likes && !user.posts">
-                <h1>
-                    You haven't liked or created any posts yet.
-                </h1>
-            </ng-container>
+        <ng-container *ngIf="user.email === currentUser.email">
+            <h1>
+                {{user.email.split("@")[0]}}'s profile
+            </h1>
 
             <ng-container *ngIf="user.likes || user.posts">
-                <div *ngIf="!user.posts">
+                <!-- <div *ngIf="!user.posts">
                     <h1>
                         You haven't created any posts yet.
                     </h1>
-                </div>
+                </div> -->
 
                 <div *ngIf="user.posts">
                     <h1>Created posts</h1>
@@ -30,11 +28,11 @@
                     </ng-container>
                 </div>
 
-                <div *ngIf="!user.likes">
+                <!-- <div *ngIf="!user.likes">
                     <h1>
                         You haven't liked any posts yet.
                     </h1>
-                </div>
+                </div> -->
 
                 <div *ngIf="user.likes">
                     <h1>
@@ -42,7 +40,7 @@
                     </h1>
 
                     <ng-container *ngFor="let post of posts">
-                        <div *ngIf="post.likes.includes(user.email)">
+                        <div *ngIf="post.likes && post.likes.includes(user.email)">
                             <h2>
                                 {{post.title}}
                             </h2>
@@ -63,7 +61,7 @@
         <h1>Created posts</h1>
 
         <ng-container *ngFor="let post of posts">
-            <div *ngIf="post.author === userEmail">
+            <div *ngIf="post.author === currentUser">
 
                 <h2>
                     {{post.title}}
@@ -77,7 +75,7 @@
     </div>
 
     <div *ngFor="let post of posts">
-        <ng-container *ngIf="post.likes && post.likes.includes(userEmail)">
+        <ng-container *ngIf="post.likes && post.likes.includes(currentUser)">
             <h1>
                 Liked posts
             </h1>
@@ -91,4 +89,10 @@
             </button>
         </ng-container>
     </div>
+</ng-container> -->
+
+<!-- <ng-container *ngFor="let user of users">
+<ng-container *ngIf="user.email === currentUser">
+    {{user.email}}
+</ng-container>
 </ng-container> -->

@@ -18,9 +18,14 @@
             Create
         </button>
 
-        <button routerLink="/profile">
-            Profile
-        </button>
+        <ng-container *ngFor="let user of users">
+            <ng-container *ngIf="user.email === userEmail" >
+                {{user.email}}
+                <button routerLink="/user/{{user.id}}">
+                    Profile
+                </button>
+            </ng-container>
+        </ng-container>
 
         <button (click)="logout()" >
             Logout

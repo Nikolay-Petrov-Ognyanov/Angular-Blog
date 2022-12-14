@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-post-details',
@@ -41,11 +42,23 @@ export class PostDetailsComponent {
         }
       }
     })
+
+    this.angularFirestore
+    .collection("users")
+    .snapshotChanges()
+    .subscribe(res => {
+      this.users = res.map(u => {
+        return {
+          id: u.payload.doc.id,
+          ...u.payload.doc.data() as {}
+        } as User
+      })
+    })
   }
 
   user: any
+  users: any
   post = this.readPost()
-
   postIsLikedByThisUser!: boolean
   postIsDislikedByThisUser!: boolean
 

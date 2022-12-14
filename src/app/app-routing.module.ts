@@ -23,7 +23,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "profile",
+    path: "user/:id",
     component: ProfileComponent
   },
   {

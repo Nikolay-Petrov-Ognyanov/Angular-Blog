@@ -3,6 +3,7 @@ export class Post {
     title!: string
     content!: string
     author!: string
+    authorId!: string
     likes!: any
     dislikes!: any
 }
