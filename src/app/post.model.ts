@@ -1,6 +1,8 @@
 export class Post {
-    title!: string
     id!: string
+    title!: string
     content!: string
     author!: string
+    likes!: any
+    dislikes!: any
 }

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { NgForm } from '@angular/forms';
+import { AngularFirestore } from "@angular/fire/compat/firestore"
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent {
   constructor(
     public firebaseService: FirebaseService,
-    private router: Router
+    private router: Router,
+    private angularFireStore: AngularFirestore
   ) { }
 
   @ViewChild(
@@ -35,5 +37,7 @@ export class RegisterComponent {
     if (localStorage.getItem("user")) {
       this.router.navigate(["/"])
     }
+
+    this.angularFireStore.collection("users").add({ email })
   }
 }

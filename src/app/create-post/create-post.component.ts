@@ -17,12 +17,16 @@ export class CreatePostComponent {
     this.createPostForm = this.formBuilder.group({
       title: [""],
       content: [""],
-      author: this.email
+      author: this.email,
+      likes: this.likes,
+      dislikes: this.dislies
     })
   }
 
   getUser: string = localStorage.getItem("user") as string
   email: string = JSON.parse(this.getUser).email
+  likes: string[] = []
+  dislies: string[] = []
 
   public createPostForm: FormGroup
 

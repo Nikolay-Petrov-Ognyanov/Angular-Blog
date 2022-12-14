@@ -16,7 +16,7 @@
     </ng-container>
 
     <ng-container *ngIf="post.dislikes">
-        Dislikes {{post.dislikes.length}}
+        Dislikes: {{post.dislikes.length}}
     </ng-container>
 </div>
 
@@ -32,11 +32,11 @@
     </ng-container>
 
     <ng-container *ngIf="post.author !== user">
-        <button (click)="likePost()" [disabled]="postIsLikedByCurrentUser">
+        <button (click)="likePost()" [disabled]="postIsLikedByThisUser">
             Like
         </button>
 
-        <button (click)="dislikePost()" [disabled]="postIsDislikedByCurrentUser">
+        <button (click)="dislikePost()" [disabled]="postIsDislikedByThisUser">
             Dislike
         </button>
     </ng-container>

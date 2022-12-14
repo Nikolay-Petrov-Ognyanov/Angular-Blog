@@ -27,8 +27,8 @@ export class PostDetailsComponent {
         let likesArray = Array.from(post.get("likes"))
 
         if (likesArray.includes(this.user)) {
-          this.postIsLikedByCurrentUser = true
-          this.postIsDislikedByCurrentUser = false
+          this.postIsLikedByThisUser = true
+          this.postIsDislikedByThisUser = false
         }
       }
 
@@ -36,8 +36,8 @@ export class PostDetailsComponent {
         let dislikesArray = Array.from(post.get("dislikes"))
 
         if (dislikesArray.includes(this.user)) {
-          this.postIsLikedByCurrentUser = false
-          this.postIsDislikedByCurrentUser = true
+          this.postIsLikedByThisUser = false
+          this.postIsDislikedByThisUser = true
         }
       }
     })
@@ -46,8 +46,8 @@ export class PostDetailsComponent {
   user: any
   post = this.readPost()
 
-  postIsLikedByCurrentUser!: boolean
-  postIsDislikedByCurrentUser!: boolean
+  postIsLikedByThisUser!: boolean
+  postIsDislikedByThisUser!: boolean
 
   get isLoggedIn() {
     return !!localStorage.getItem("user")
@@ -73,8 +73,8 @@ export class PostDetailsComponent {
   }
 
   likePost() {
-    this.postIsLikedByCurrentUser = true
-    this.postIsDislikedByCurrentUser = false
+    this.postIsLikedByThisUser = true
+    this.postIsDislikedByThisUser = false
 
     const postId: any = this.route.snapshot.paramMap.get("id")
     const itemRef = this.angularFirestore.collection('posts').doc(postId)
@@ -97,12 +97,26 @@ export class PostDetailsComponent {
           })   
         }
       }
+
+      if (post.get("dislikes")) {
+        let dislikesArray = Array.from(post.get("dislikes"))
+
+        if (dislikesArray.includes(this.user)) {
+          let indexOfThisUser = dislikesArray.indexOf(this.user)
+
+          dislikesArray.splice(indexOfThisUser, 1)
+
+          itemRef.update({
+            dislikes:dislikesArray
+          })
+        }
+      }
     })
   }
 
   dislikePost() {
-    this.postIsLikedByCurrentUser = false
-    this.postIsDislikedByCurrentUser = true
+    this.postIsLikedByThisUser = false
+    this.postIsDislikedByThisUser = true
 
     const postId: any = this.route.snapshot.paramMap.get("id")
     const itemRef = this.angularFirestore.collection('posts').doc(postId)
@@ -122,6 +136,19 @@ export class PostDetailsComponent {
          
           itemRef.update({
             dislikes: dislikesArray
+          })
+        }
+      }
+
+      if (post.get("likes")) {
+        let likesArray = Array.from(post.get("likes"))
+
+        if (likesArray.includes(this.user)) {
+          let indexOfThisUser = likesArray.indexOf(this.user)
+          likesArray.splice(indexOfThisUser, 1)
+
+          itemRef.update({
+            likes:likesArray
           })
         }
       }
