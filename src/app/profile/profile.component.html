@@ -1,20 +1,7 @@
 <ng-container *ngIf="users">
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="user.email === userFromRoute.email">
-            <div>
-                user.email: {{user.email}}
-            </div>
-
-            <div>
-                userFromRoute.email: {{userFromRoute.email}}
-            </div>
-
-            <div>
-                currentUser.email: {{currentUser.email}}
-            </div>
-
             <ng-container *ngIf="userFromRoute.email !== currentUser.email">
-
                 <h1>
                     {{user.email.split("@")[0]}}'s profile
                 </h1>
