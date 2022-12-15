@@ -20,7 +20,6 @@
 
         <ng-container *ngFor="let user of users">
             <ng-container *ngIf="user.email === userEmail" >
-                {{user.email}}
                 <button routerLink="/user/{{user.id}}">
                     Profile
                 </button>

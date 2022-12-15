@@ -25,6 +25,10 @@ export class RegisterComponent {
     return !!localStorage.getItem("user")
   }
 
+  get userdata() {
+    return localStorage.getItem("user")
+  }
+
   async onRegister(form: NgForm) {
     if (form.invalid) {
       return

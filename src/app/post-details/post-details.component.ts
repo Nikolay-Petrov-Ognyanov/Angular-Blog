@@ -17,17 +17,17 @@ export class PostDetailsComponent {
     public angularFirestore: AngularFirestore
   ) {
     if (this.isLoggedIn) {
-      this.user = JSON.parse(localStorage.getItem("user") as any).email
+      this.currentUserEmail = JSON.parse(localStorage.getItem("user") as any).email
     }
 
     const postId: any = this.route.snapshot.paramMap.get("id")
-    const itemRef = this.angularFirestore.collection('posts').doc(postId)
+    const postRef = this.angularFirestore.collection('posts').doc(postId)
 
-    itemRef.get().subscribe(post => {
+    postRef.get().subscribe(post => {
       if (post.get("likes")) {
         let likesArray = Array.from(post.get("likes"))
 
-        if (likesArray.includes(this.user)) {
+        if (likesArray.includes(this.currentUserEmail)) {
           this.postIsLikedByThisUser = true
           this.postIsDislikedByThisUser = false
         }
@@ -36,17 +36,14 @@ export class PostDetailsComponent {
       if (post.get("dislikes")) {
         let dislikesArray = Array.from(post.get("dislikes"))
 
-        if (dislikesArray.includes(this.user)) {
+        if (dislikesArray.includes(this.currentUserEmail)) {
           this.postIsLikedByThisUser = false
           this.postIsDislikedByThisUser = true
         }
       }
     })
 
-    this.angularFirestore
-    .collection("users")
-    .snapshotChanges()
-    .subscribe(res => {
+    this.angularFirestore.collection("users").snapshotChanges().subscribe(res => {
       this.users = res.map(u => {
         return {
           id: u.payload.doc.id,
@@ -56,7 +53,8 @@ export class PostDetailsComponent {
     })
   }
 
-  user: any
+  userId: any
+  currentUserEmail: any
   users: any
   post = this.readPost()
   postIsLikedByThisUser!: boolean
@@ -78,76 +76,178 @@ export class PostDetailsComponent {
     this.router.navigate([`post/${postId}/update`])
   }
 
-  deletePost(): any {
-    const postId: any = this.route.snapshot.paramMap.get("id")
+  deletePost(uid: any): any {
+    if (confirm("Are you sure you want to delete this post?")) {
+      if (uid !== undefined) {
+        this.userId = uid
+      }
 
-    this.router.navigate([""])
-    return this.postService.deletePost(postId)
+      const userRef = this.angularFirestore.collection("users").doc(this.userId)
+      const postId: any = this.route.snapshot.paramMap.get("id")
+
+      userRef.get().subscribe(user => {
+        if (user.get("posts")) {
+          let postsArray = Array.from(user.get("posts"))
+
+          if (postsArray.includes(postId)) {
+            let indexOfThisPost = postsArray.indexOf(postId)
+
+            postsArray.splice(indexOfThisPost, 1)
+
+            userRef.update({
+              posts: postsArray
+            })
+          }
+        }
+      })
+
+      this.router.navigate([""])
+
+      return this.postService.deletePost(postId)
+    }
   }
 
-  likePost() {
+  likePost(uid: any) {
+    if (uid !== undefined) {
+      this.userId = uid
+    }
+
     this.postIsLikedByThisUser = true
     this.postIsDislikedByThisUser = false
 
+    const userRef = this.angularFirestore.collection("users").doc(this.userId)
     const postId: any = this.route.snapshot.paramMap.get("id")
-    const itemRef = this.angularFirestore.collection('posts').doc(postId)
+    const postRef = this.angularFirestore.collection('posts').doc(postId)
 
-    itemRef.get().subscribe(post => {
+    userRef.get().subscribe(user => {
+      if (!user.get("likes")) {
+        userRef.set({
+          likes: [postId]
+        }, {
+          merge: true
+        })
+      } else {
+        let likesArray = Array.from(user.get("likes"))
+
+        if (!likesArray.includes(postId)) {
+          likesArray.push(postId)
+
+          userRef.update({
+            likes: likesArray
+          })
+        }
+      }
+
+      if (user.get("dislikes")) {
+        let dislikesArray = Array.from(user.get("dislikes"))
+
+        if (dislikesArray.includes(postId)) {
+          let indexOfThisPost = dislikesArray.indexOf(postId)
+
+          dislikesArray.splice(indexOfThisPost, 1)
+
+          userRef.update({
+            dislikes: dislikesArray
+          })
+        }
+      }
+    })
+
+    postRef.get().subscribe(post => {
       if (!post.get("likes")) {
-        itemRef.set({
-          likes: [this.user]
+        postRef.set({
+          likes: [this.currentUserEmail]
         }, {
           merge: true
         })
       } else {
         let likesArray = Array.from(post.get("likes"))
 
-        if (!likesArray.includes(this.user)) {
-          likesArray.push(this.user)
-         
-          itemRef.update({
+        if (!likesArray.includes(this.currentUserEmail)) {
+          likesArray.push(this.currentUserEmail)
+
+          postRef.update({
             likes: likesArray
-          })   
+          })
         }
       }
 
       if (post.get("dislikes")) {
         let dislikesArray = Array.from(post.get("dislikes"))
 
-        if (dislikesArray.includes(this.user)) {
-          let indexOfThisUser = dislikesArray.indexOf(this.user)
+        if (dislikesArray.includes(this.currentUserEmail)) {
+          let indexOfThisUser = dislikesArray.indexOf(this.currentUserEmail)
 
           dislikesArray.splice(indexOfThisUser, 1)
 
-          itemRef.update({
-            dislikes:dislikesArray
+          postRef.update({
+            dislikes: dislikesArray
           })
         }
       }
     })
   }
 
-  dislikePost() {
+  dislikePost(uid: any) {
+    if (uid !== undefined) {
+      this.userId = uid
+    }
+
     this.postIsLikedByThisUser = false
     this.postIsDislikedByThisUser = true
 
     const postId: any = this.route.snapshot.paramMap.get("id")
-    const itemRef = this.angularFirestore.collection('posts').doc(postId)
+    const postRef = this.angularFirestore.collection('posts').doc(postId)
+    const userRef = this.angularFirestore.collection("users").doc(this.userId)
 
-    itemRef.get().subscribe(post => {
+    userRef.get().subscribe(user => {
+      if (!user.get("dislikes")) {
+        userRef.set({
+          dislikes: [postId]
+        }, {
+          merge: true
+        })
+      } else {
+        let dislikesArray = Array.from(user.get("dislikes"))
+
+        if (!dislikesArray.includes(postId)) {
+          dislikesArray.push(postId)
+
+          userRef.update({
+            dislikes: dislikesArray
+          })
+        }
+      }
+
+      if (user.get("likes")) {
+        let likesArray = Array.from(user.get("likes"))
+
+        if (likesArray.includes(postId)) {
+          let indexOfThisPost = likesArray.indexOf(postId)
+
+          likesArray.splice(indexOfThisPost, 1)
+
+          userRef.update({
+            likes: likesArray
+          })
+        }
+      }
+    })
+
+    postRef.get().subscribe(post => {
       if (!post.get("dislikes")) {
-        itemRef.set({
-          dislikes: [this.user]
+        postRef.set({
+          dislikes: [this.currentUserEmail]
         }, {
           merge: true
         })
       } else {
         let dislikesArray = Array.from(post.get("dislikes"))
 
-        if (!dislikesArray.includes(this.user)) {
-          dislikesArray.push(this.user)
-         
-          itemRef.update({
+        if (!dislikesArray.includes(this.currentUserEmail)) {
+          dislikesArray.push(this.currentUserEmail)
+
+          postRef.update({
             dislikes: dislikesArray
           })
         }
@@ -156,12 +256,13 @@ export class PostDetailsComponent {
       if (post.get("likes")) {
         let likesArray = Array.from(post.get("likes"))
 
-        if (likesArray.includes(this.user)) {
-          let indexOfThisUser = likesArray.indexOf(this.user)
+        if (likesArray.includes(this.currentUserEmail)) {
+          let indexOfThisUser = likesArray.indexOf(this.currentUserEmail)
+
           likesArray.splice(indexOfThisUser, 1)
 
-          itemRef.update({
-            likes:likesArray
+          postRef.update({
+            likes: likesArray
           })
         }
       }

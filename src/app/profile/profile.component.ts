@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../post.model';
 import { PostService } from '../services/post.service';
 import { AngularFirestore } from "@angular/fire/compat/firestore"
-import { User } from '../user.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -40,12 +39,12 @@ export class ProfileComponent implements OnInit {
     this.angularFirestore
       .collection("users")
       .doc(userId).valueChanges()
-      .subscribe(user => this.currentUser = user)
+      .subscribe(user => this.userFromRoute = user)
   }
 
   ngOnInit(): void { }
 
-  currentUser: any
+  userFromRoute: any
   users!: any
   authorEmail = JSON.parse(localStorage.getItem("user") as any).email
   posts!: Post[]

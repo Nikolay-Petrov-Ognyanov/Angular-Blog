@@ -1,17 +1,21 @@
-<form [formGroup]="createPostForm" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="createPostForm" novalidate>
     <div>
         <input type="text" formControlName="title" class="form-control" placeholder="Title" required>
     </div>
-    
+
     <div>
         <input type="text" formControlName="content" class="form-control" placeholder="Content" required>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!createPostForm.valid" >
-        Create
-    </button>
+    <ng-container *ngFor="let user of users">
+        <ng-container *ngIf="user.email === currentUserEmail">
+            <button class="btn btn-primary" (click)="onSubmit(user.id)" [disabled]="!createPostForm.valid">
+                Create
+            </button>
 
-    <button type="reset" class="btn btn-danger" >
-        Reset
-    </button>
+            <button type="reset" class="btn btn-danger">
+                Reset
+            </button>
+        </ng-container>
+    </ng-container>
 </form>

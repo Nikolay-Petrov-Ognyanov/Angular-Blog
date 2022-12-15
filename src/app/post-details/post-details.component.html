@@ -22,24 +22,30 @@
     </ng-container>
 </div>
 
-<ng-container *ngIf="user">
-    <ng-container *ngIf="post.author === user">
-        <button (click)="updatePost()">
-            Update
-        </button>
+<ng-container *ngIf="currentUserEmail">
+    <ng-container *ngFor="let user of users">
+        <ng-container *ngIf="post.author === currentUserEmail && user.email === currentUserEmail">
+            <button (click)="updatePost()">
+                Update
+            </button>
 
-        <button (click)="deletePost()">
-            Delete
-        </button>
+            <button (click)="deletePost(user.id)">
+                Delete
+            </button>
+        </ng-container>
     </ng-container>
 
-    <ng-container *ngIf="post.author !== user">
-        <button (click)="likePost()" [disabled]="postIsLikedByThisUser">
-            Like
-        </button>
+    <ng-container *ngIf="post.author !== currentUserEmail">
+        <ng-container *ngFor="let user of users">
+            <ng-container *ngIf="user.email === currentUserEmail">
+                <button (click)="likePost(user.id)" [disabled]="postIsLikedByThisUser">
+                    Like
+                </button>
 
-        <button (click)="dislikePost()" [disabled]="postIsDislikedByThisUser">
-            Dislike
-        </button>
+                <button (click)="dislikePost(user.id)" [disabled]="postIsDislikedByThisUser">
+                    Dislike
+                </button>
+            </ng-container>
+        </ng-container>
     </ng-container>
 </ng-container>

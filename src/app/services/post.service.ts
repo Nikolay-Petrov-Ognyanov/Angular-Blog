@@ -6,32 +6,23 @@ import { Post } from '../post.model';
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private angularFirestore: AngularFirestore) { }
 
   readAllPosts() {
-    return this.firestore
+    return this.angularFirestore
       .collection("posts")
       .snapshotChanges()
   }
 
-  createPost(post: Post) {
-    return new Promise<any>((resolve, reject) => {
-      this.firestore
-        .collection("posts")
-        .add(post)
-        .then(response => { console.log(response) }, error => reject(error))
-    })
-  }
-
   readPost(id: string) {
-    return this.firestore
+    return this.angularFirestore
       .collection("posts")
       .doc(id)
       .valueChanges()
   }
 
   updatePost(post: Post, id: string) {
-    return this.firestore
+    return this.angularFirestore
       .collection("posts")
       .doc(id)
       .update({
@@ -41,7 +32,7 @@ export class PostService {
   }
 
   deletePost(id: string) {
-    return this.firestore
+    return this.angularFirestore
       .collection("posts")
       .doc(id)
       .delete()
