@@ -1,74 +1,138 @@
 <ng-container *ngIf="users">
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="user.email === userFromRoute.email">
-            <!-- <div>
+            <div>
                 user.email: {{user.email}}
             </div>
 
             <div>
                 userFromRoute.email: {{userFromRoute.email}}
-            </div> -->
-
-            <h1>
-                {{user.email.split("@")[0]}}'s profile
-            </h1>
-
-            <div *ngIf="!!user.posts == false && !!user.likes == false">
-                <h2>
-                    {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
-                </h2>
             </div>
 
-            <div *ngIf="!!user.posts == false && !!user.likes == true">
-                <h2>
-                    {{user.email.split("@")[0]}} hasn't created any posts yet.
-                </h2>
+            <div>
+                currentUser.email: {{currentUser.email}}
             </div>
 
-            <div *ngIf="!!user.posts == true">
-                <h2>
-                    Created posts
-                </h2>
+            <ng-container *ngIf="userFromRoute.email !== currentUser.email">
 
-                <ng-container *ngFor="let post of posts">
-                    <div *ngIf="post.author == userFromRoute.email">
+                <h1>
+                    {{user.email.split("@")[0]}}'s profile
+                </h1>
 
-                        {{post.author}} {{user.email}}
+                <div *ngIf="!!user.posts == false && !!user.likes == false">
+                    <h2>
+                        {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
+                    </h2>
+                </div>
 
-                        <h3>
-                            {{post.title}}
-                        </h3>
+                <div *ngIf="!!user.posts == false && !!user.likes == true">
+                    <h2>
+                        {{user.email.split("@")[0]}} hasn't created any posts yet.
+                    </h2>
+                </div>
 
-                        <button routerLink="/post/{{post.id}}">
-                            Details
-                        </button>
-                    </div>
-                </ng-container>
-            </div>
+                <div *ngIf="!!user.posts == true">
+                    <h2>
+                        Created posts
+                    </h2>
 
-            <div *ngIf="!!user.posts == true && !!user.likes == false">
-                <h2>
-                    {{user.email.split("@")[0]}} hasn't liked any posts yet.
-                </h2>
-            </div>
+                    <ng-container *ngFor="let post of posts">
+                        <div *ngIf="post.author == userFromRoute.email">
+                            <h3>
+                                {{post.title}}
+                            </h3>
 
-            <div *ngIf="!!user.likes == true">
-                <h2>
-                    Liked posts
-                </h2>
+                            <button routerLink="/post/{{post.id}}">
+                                Details
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
 
-                <ng-container *ngFor="let post of posts">
-                    <div *ngIf="post.likes && post.likes.includes(user.email)">
-                        <h3>
-                            {{post.title}}
-                        </h3>
+                <div *ngIf="!!user.posts == true && !!user.likes == false">
+                    <h2>
+                        {{user.email.split("@")[0]}} hasn't liked any posts yet.
+                    </h2>
+                </div>
 
-                        <button routerLink="/post/{{post.id}}">
-                            Details
-                        </button>
-                    </div>
-                </ng-container>
-            </div>
+                <div *ngIf="!!user.likes == true">
+                    <h2>
+                        Liked posts
+                    </h2>
+
+                    <ng-container *ngFor="let post of posts">
+                        <div *ngIf="post.likes && post.likes.includes(user.email)">
+                            <h3>
+                                {{post.title}}
+                            </h3>
+
+                            <button routerLink="/post/{{post.id}}">
+                                Details
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="userFromRoute.email === currentUser.email">
+                <h1>
+                    {{user.email.split("@")[0]}}'s profile
+                </h1>
+
+                <div *ngIf="!!user.posts == false && !!user.likes == false">
+                    <h2>
+                        You haven't liked or created any posts yet.
+                    </h2>
+                </div>
+
+                <div *ngIf="!!user.posts == false && !!user.likes == true">
+                    <h2>
+                        You haven't created any posts yet.
+                    </h2>
+                </div>
+
+                <div *ngIf="!!user.posts == true">
+                    <h2>
+                        Your posts
+                    </h2>
+
+                    <ng-container *ngFor="let post of posts">
+                        <div *ngIf="post.author == userFromRoute.email">
+                            <h3>
+                                {{post.title}}
+                            </h3>
+
+                            <button routerLink="/post/{{post.id}}">
+                                Details
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <div *ngIf="!!user.posts == true && !!user.likes == false">
+                    <h2>
+                        You haven't liked any posts yet.
+                    </h2>
+                </div>
+
+                <div *ngIf="!!user.likes == true">
+                    <h2>
+                        Your likes
+                    </h2>
+
+                    <ng-container *ngFor="let post of posts">
+                        <div *ngIf="post.likes && post.likes.includes(user.email)">
+                            <h3>
+                                {{post.title}}
+                            </h3>
+
+                            <button routerLink="/post/{{post.id}}">
+                                Details
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
         </ng-container>
     </ng-container>
 </ng-container>

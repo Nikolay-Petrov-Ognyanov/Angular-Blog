@@ -44,6 +44,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  get currentUser() {
+    return JSON.parse(localStorage.getItem("user") as any)
+  }
+
   userFromRoute: any
   users!: any
   authorEmail = JSON.parse(localStorage.getItem("user") as any).email
