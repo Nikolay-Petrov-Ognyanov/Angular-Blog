@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Post } from '../post.model';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class PostService {
 
   readAllPosts() {
     return this.angularFirestore
-      .collection("posts")
+      .collection("posts", ref => ref.orderBy("published", "desc"))
       .snapshotChanges()
   }
 

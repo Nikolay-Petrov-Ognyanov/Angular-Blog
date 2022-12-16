@@ -1,74 +1,80 @@
-<h2 *ngIf="post.title">
-    {{post.title}}
-</h2>
-
-<div *ngIf="post.content">
-    {{post.content}}
-</div>
-
-<ng-container *ngIf="isLoggedIn">
-    <ng-container *ngFor="let user of users">
-        <ng-container *ngIf="user.email === post.author">
-            Created by <a routerLink="/user/{{user.id}}">{{post.author}}</a>
-        </ng-container>
-    </ng-container>
-</ng-container>
-
-<ng-container *ngIf="!isLoggedIn">
-    Created by {{post.author}}
-</ng-container>
-
 <div>
-    <ng-container *ngIf="post.likes">
-        <ng-container *ngIf="post.likes.length === 1">
-            1 like
-        </ng-container>
+    <h2>
+        {{post.title}}
+    </h2>
 
-        <ng-container *ngIf="post.likes.length > 1">
-            {{post.likes.length}} likes
-        </ng-container>
-    </ng-container>
+    <p>
+        {{post.content}}
+    </p>
 
-    <ng-container *ngIf="post.likes.length > 0 && post.dislikes.length > 0">
-        &
-    </ng-container>
-
-    <ng-container *ngIf="post.dislikes">
-        <ng-container *ngIf="post.dislikes.length === 1">
-            1 dislike
-        </ng-container>
-
-
-        <ng-container *ngIf="post.dislikes.length > 1">
-            {{post.dislikes.length}} dislikes
-        </ng-container>
-    </ng-container>
-</div>
-
-<ng-container *ngIf="currentUserEmail">
-    <ng-container *ngFor="let user of users">
-        <ng-container *ngIf="post.author === currentUserEmail && user.email === currentUserEmail">
-            <button (click)="updatePost()">
-                Update
-            </button>
-
-            <button (click)="deletePost(user.id)">
-                Delete
-            </button>
-        </ng-container>
-    </ng-container>
-
-    <ng-container *ngIf="post.author !== currentUserEmail">
+    <ng-container *ngIf="isLoggedIn">
         <ng-container *ngFor="let user of users">
-            <ng-container *ngIf="user.email === currentUserEmail">
-                <button (click)="likePost(user.id)" [disabled]="postIsLikedByThisUser">
-                    Like
-                </button>
-
-                <button (click)="dislikePost(user.id)" [disabled]="postIsDislikedByThisUser">
-                    Dislike
-                </button>
+            <ng-container *ngIf="user.email === post.author">
+                <p>
+                    Created by <a routerLink="/user/{{user.id}}">{{post.author}}</a>
+                </p>
             </ng-container>
         </ng-container>
     </ng-container>
-</ng-container>
+
+    <ng-container *ngIf="!isLoggedIn">
+        <p>
+            Created by {{post.author}}
+        </p>
+    </ng-container>
+
+    <p>
+        <ng-container *ngIf="post.likes">
+            <ng-container *ngIf="post.likes.length === 1">
+                1 like
+            </ng-container>
+
+            <ng-container *ngIf="post.likes.length > 1">
+                    {{post.likes.length}} likes
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="post.likes && post.likes.length > 0 && post.dislikes && post.dislikes.length > 0">
+            &
+        </ng-container>
+
+        <ng-container *ngIf="post.dislikes">
+            <ng-container *ngIf="post.dislikes.length === 1">
+                1 dislike
+            </ng-container>
+
+
+            <ng-container *ngIf="post.dislikes.length > 1">
+                {{post.dislikes.length}} dislikes
+            </ng-container>
+        </ng-container>
+    </p>
+
+    <ng-container *ngIf="currentUserEmail">
+        <ng-container *ngFor="let user of users">
+            <ng-container *ngIf="post.author === currentUserEmail && user.email === currentUserEmail">
+                <button (click)="updatePost()">
+                    Update
+                </button>
+
+                <button (click)="deletePost(user.id)">
+                    Delete
+                </button>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="post.author !== currentUserEmail">
+            <ng-container *ngFor="let user of users">
+                <ng-container *ngIf="user.email === currentUserEmail">
+                    <button (click)="likePost(user.id)" [disabled]="postIsLikedByThisUser">
+                        Like
+                    </button>
+
+                    <button (click)="dislikePost(user.id)" [disabled]="postIsDislikedByThisUser">
+                        Dislike
+                    </button>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>

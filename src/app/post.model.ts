@@ -6,4 +6,5 @@ export class Post {
     authorId!: string
     likes!: any
     dislikes!: any
+    published!: Date
 }

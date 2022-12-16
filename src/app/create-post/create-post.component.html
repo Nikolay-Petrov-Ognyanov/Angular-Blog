@@ -1,4 +1,6 @@
 <form [formGroup]="createPostForm" novalidate>
+    
+
     <div>
         <input type="text" formControlName="title" #title class="form-control" placeholder="Title" required>
     </div>
@@ -10,7 +12,7 @@
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="user.email === currentUserEmail">
             <button (click)="onSubmit(user.id)" [disabled]="!title.value.trim() || !content.value.trim()">
-                Create
+                Publish
             </button>
 
             <button type="reset" class="btn btn-danger">
