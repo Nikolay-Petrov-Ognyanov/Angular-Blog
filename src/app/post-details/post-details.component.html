@@ -7,7 +7,7 @@
         {{post.content}}
     </p>
 
-    <ng-container *ngIf="isLoggedIn">
+    <ng-container *ngIf="isLoggedIn && post.published">
         <ng-container *ngFor="let user of users">
             <ng-container *ngIf="user.email === post.author">
                 <p>
@@ -15,19 +15,19 @@
                 </p>
 
                 <p>
-                    on {{post.published.toDate() | date:"medium"}}
+                    on {{post.published.toDate() | date: "medium"}}
                 </p>
             </ng-container>
         </ng-container>
     </ng-container>
 
-    <ng-container *ngIf="!isLoggedIn">
+    <ng-container *ngIf="!isLoggedIn && post.published">
         <p>
             Created by {{post.author}}
         </p>
 
         <p>
-            on {{post.published.toDate() | date:"medium"}}
+            on {{post.published.toDate() | date: "medium"}}
         </p>
     </ng-container>
 
