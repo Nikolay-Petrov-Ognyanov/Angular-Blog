@@ -11,8 +11,6 @@ import { AuthorService } from './services/author.service';
 import { IsLoggedOutService } from './services/is-logged-out.service';
 import { IsLoggedInService } from './services/is-logged-in.service';
 
-let isLoggedIn = !!localStorage.getItem("user")
-
 const routes: Routes = [
   {
     path: "",

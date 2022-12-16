@@ -20,11 +20,28 @@
 
 <div>
     <ng-container *ngIf="post.likes">
-        Likes: {{post.likes.length}}
+        <ng-container *ngIf="post.likes.length === 1">
+            1 like
+        </ng-container>
+
+        <ng-container *ngIf="post.likes.length > 1">
+            {{post.likes.length}} likes
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="post.likes.length > 0 && post.dislikes.length > 0">
+        &
     </ng-container>
 
     <ng-container *ngIf="post.dislikes">
-        Dislikes: {{post.dislikes.length}}
+        <ng-container *ngIf="post.dislikes.length === 1">
+            1 dislike
+        </ng-container>
+
+
+        <ng-container *ngIf="post.dislikes.length > 1">
+            {{post.dislikes.length}} dislikes
+        </ng-container>
     </ng-container>
 </div>
 
