@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="post">
     <h2>
         {{post.title}}
     </h2>
@@ -13,6 +13,10 @@
                 <p>
                     Created by <a routerLink="/user/{{user.id}}">{{post.author}}</a>
                 </p>
+
+                <p>
+                    on {{post.published.toDate() | date:"medium"}}
+                </p>
             </ng-container>
         </ng-container>
     </ng-container>
@@ -21,34 +25,40 @@
         <p>
             Created by {{post.author}}
         </p>
+
+        <p>
+            on {{post.published.toDate() | date:"medium"}}
+        </p>
     </ng-container>
 
-    <p>
-        <ng-container *ngIf="post.likes">
-            <ng-container *ngIf="post.likes.length === 1">
-                1 like
-            </ng-container>
+    <ng-container *ngIf="post.likes || post.dislikes">
+        <p>
+            <ng-container *ngIf="post.likes">
+                <ng-container *ngIf="post.likes.length === 1">
+                    1 like
+                </ng-container>
 
-            <ng-container *ngIf="post.likes.length > 1">
+                <ng-container *ngIf="post.likes.length > 1">
                     {{post.likes.length}} likes
-            </ng-container>
-        </ng-container>
-
-        <ng-container *ngIf="post.likes && post.likes.length > 0 && post.dislikes && post.dislikes.length > 0">
-            &
-        </ng-container>
-
-        <ng-container *ngIf="post.dislikes">
-            <ng-container *ngIf="post.dislikes.length === 1">
-                1 dislike
+                </ng-container>
             </ng-container>
 
-
-            <ng-container *ngIf="post.dislikes.length > 1">
-                {{post.dislikes.length}} dislikes
+            <ng-container *ngIf="post.likes && post.likes.length > 0 && post.dislikes && post.dislikes.length > 0">
+                &
             </ng-container>
-        </ng-container>
-    </p>
+
+            <ng-container *ngIf="post.dislikes">
+                <ng-container *ngIf="post.dislikes.length === 1">
+                    1 dislike
+                </ng-container>
+
+
+                <ng-container *ngIf="post.dislikes.length > 1">
+                    {{post.dislikes.length}} dislikes
+                </ng-container>
+            </ng-container>
+        </p>
+    </ng-container>
 
     <ng-container *ngIf="currentUserEmail">
         <ng-container *ngFor="let user of users">

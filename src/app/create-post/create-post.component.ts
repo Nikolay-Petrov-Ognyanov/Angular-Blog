@@ -29,7 +29,7 @@ export class CreatePostComponent {
       authorId: this.userId,
       likes: this.likes,
       dislikes: this.dislies,
-      published: this.published
+      published: new Date()
     })
 
     this.angularFirestore.collection("users").snapshotChanges().subscribe(res => {
@@ -47,7 +47,6 @@ export class CreatePostComponent {
   userId: string = JSON.parse(this.getUser).uid
   likes: string[] = []
   dislies: string[] = []
-  published: Date = new Date
 
   public createPostForm: FormGroup
 
