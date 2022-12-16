@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
       })
 
     const userId: any = this.route.snapshot.paramMap.get("id")
-    const itemRef = this.angularFirestore.collection('users').doc(userId)
 
     this.angularFirestore
       .collection("users")
