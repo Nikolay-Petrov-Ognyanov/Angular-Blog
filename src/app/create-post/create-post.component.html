@@ -1,15 +1,15 @@
 <form [formGroup]="createPostForm" novalidate>
     <div>
-        <input type="text" formControlName="title" class="form-control" placeholder="Title" required>
+        <input type="text" formControlName="title" #title class="form-control" placeholder="Title" required>
     </div>
 
     <div>
-        <input type="text" formControlName="content" class="form-control" placeholder="Content" required>
+        <input type="text" formControlName="content" #content class="form-control" placeholder="Content" required>
     </div>
 
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="user.email === currentUserEmail">
-            <button class="btn btn-primary" (click)="onSubmit(user.id)" [disabled]="!createPostForm.valid">
+            <button (click)="onSubmit(user.id)" [disabled]="!title.value.trim() || !content.value.trim()">
                 Create
             </button>
 

@@ -21,7 +21,6 @@ export class LoginComponent {
 
   get isLoggedIn() {
     return !!localStorage.getItem("user")
-
   }
   
   async onLogin(form: NgForm) {

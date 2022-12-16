@@ -8,6 +8,8 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { ProfileComponent } from './profile/profile.component';
 
+let isLoggedIn = !!localStorage.getItem("user")
+
 const routes: Routes = [
   {
     path: "",
@@ -15,28 +17,32 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "register",
-    component: RegisterComponent
+    path: isLoggedIn ? "" : "register",
+    component: isLoggedIn ? HomeComponent : RegisterComponent
   },
   {
-    path: "login",
-    component: LoginComponent
+    path: isLoggedIn ? "" : "login",
+    component: isLoggedIn ? HomeComponent : LoginComponent
+  },
+  {
+    path: isLoggedIn ? "create" : "",
+    component: isLoggedIn ? CreatePostComponent : HomeComponent
   },
   {
     path: "user/:id",
     component: ProfileComponent
   },
   {
-    path: "create",
-    component: CreatePostComponent
-  },
-  {
     path: "post/:id",
-    component: PostDetailsComponent
+    component: PostDetailsComponent,
   },
   {
     path: "post/:id/update",
     component: UpdatePostComponent
+  },
+  {
+    path: "**",
+    redirectTo: ""
   }
 ];
 

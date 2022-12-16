@@ -7,7 +7,7 @@
         <input type="text" formControlName="content" #content class="form-control" placeholder="Content" required>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!!title.value.trim() == false || !!content.value.trim() == false">
+    <button type="submit" [disabled]="!title.value.trim() || !content.value.trim()">
         Save
     </button>
 
