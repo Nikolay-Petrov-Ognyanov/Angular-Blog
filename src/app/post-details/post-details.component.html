@@ -6,10 +6,16 @@
     {{post.content}}
 </div>
 
-<ng-container *ngFor="let user of users">
-    <ng-container *ngIf="user.email === post.author">
-        Created by <a routerLink="/user/{{user.id}}">{{post.author}}</a>
+<ng-container *ngIf="isLoggedIn">
+    <ng-container *ngFor="let user of users">
+        <ng-container *ngIf="user.email === post.author">
+            Created by <a routerLink="/user/{{user.id}}">{{post.author}}</a>
+        </ng-container>
     </ng-container>
+</ng-container>
+
+<ng-container *ngIf="!isLoggedIn">
+    Created by {{post.author}}
 </ng-container>
 
 <div>

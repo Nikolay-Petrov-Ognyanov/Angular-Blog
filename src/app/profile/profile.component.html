@@ -1,7 +1,7 @@
 <ng-container *ngIf="users">
     <ng-container *ngFor="let user of users">
-        <ng-container *ngIf="user.email === userFromRoute.email">
-            <ng-container *ngIf="userFromRoute.email !== currentUser.email">
+        <ng-container *ngIf="userFromRoute && user.email === userFromRoute.email">
+            <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
                 <h1>
                     {{user.email.split("@")[0]}}'s profile
                 </h1>
@@ -20,7 +20,7 @@
 
                 <div *ngIf="!!user.posts == true">
                     <h2>
-                        Created posts
+                        Posts
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
@@ -44,7 +44,7 @@
 
                 <div *ngIf="!!user.likes == true">
                     <h2>
-                        Liked posts
+                        Likes
                     </h2>
 
                     <ng-container *ngFor="let post of posts">

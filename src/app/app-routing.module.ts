@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthorService } from './services/author.service';
+import { IsLoggedOutService } from './services/is-logged-out.service';
+import { IsLoggedInService } from './services/is-logged-in.service';
 
 let isLoggedIn = !!localStorage.getItem("user")
 
@@ -17,20 +20,24 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: isLoggedIn ? "" : "register",
-    component: isLoggedIn ? HomeComponent : RegisterComponent
+    path: "register",
+    component: RegisterComponent,
+    canActivate: [IsLoggedOutService]
   },
   {
-    path: isLoggedIn ? "" : "login",
-    component: isLoggedIn ? HomeComponent : LoginComponent
+    path: "login",
+    component: LoginComponent,
+    canActivate: [IsLoggedOutService]
   },
   {
-    path: isLoggedIn ? "create" : "",
-    component: isLoggedIn ? CreatePostComponent : HomeComponent
+    path: "create",
+    component: CreatePostComponent,
+    canActivate: [IsLoggedInService]
   },
   {
     path: "user/:id",
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [IsLoggedInService]
   },
   {
     path: "post/:id",
@@ -38,7 +45,8 @@ const routes: Routes = [
   },
   {
     path: "post/:id/update",
-    component: UpdatePostComponent
+    component: UpdatePostComponent,
+    canActivate: [AuthorService]
   },
   {
     path: "**",
