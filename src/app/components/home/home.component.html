@@ -3,8 +3,7 @@
 </h1>
 
 <ng-container *ngIf="posts">
-    <div *ngFor="let post of posts">
-        <mat-card class="example-card">
+        <mat-card *ngFor="let post of posts" class="example-card">
             <mat-card-header>
                 <mat-card-title>
                     {{post.title}}
@@ -21,5 +20,4 @@
                 </mat-card-actions>
             </div>
         </mat-card>
-    </div>
 </ng-container>

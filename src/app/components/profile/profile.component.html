@@ -25,15 +25,23 @@
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
-                        <div *ngIf="post.author == userFromRoute.email">
-                            <h3>
-                                {{post.title}}
-                            </h3>
+                        <mat-card *ngIf="post.author == userFromRoute.email">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <h3>
+                                        {{post.title}}
+                                    </h3>
+                                </mat-card-title>
+                            </mat-card-header>
 
-                            <button routerLink="/post/{{post.id}}">
-                                Details
-                            </button>
-                        </div>
+                            <div class="example-button-row">
+                                <mat-card-actions>
+                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                        Details
+                                    </button>
+                                </mat-card-actions>
+                            </div>
+                        </mat-card>
                     </ng-container>
                 </div>
 
@@ -49,15 +57,23 @@
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
-                        <div *ngIf="post.likes && post.likes.includes(user.email)">
-                            <h3>
-                                {{post.title}}
-                            </h3>
+                        <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <h3>
+                                        {{post.title}}
+                                    </h3>
+                                </mat-card-title>
+                            </mat-card-header>
 
-                            <button routerLink="/post/{{post.id}}">
-                                Details
-                            </button>
-                        </div>
+                            <div class="example-button-row">
+                                <mat-card-actions>
+                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                        Details
+                                    </button>
+                                </mat-card-actions>
+                            </div>
+                        </mat-card>
                     </ng-container>
                 </div>
             </ng-container>
@@ -81,15 +97,23 @@
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
-                        <div *ngIf="post.author == userFromRoute.email">
-                            <h3>
-                                {{post.title}}
-                            </h3>
+                        <mat-card *ngIf="post.author == userFromRoute.email">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <h3>
+                                        {{post.title}}
+                                    </h3>
+                                </mat-card-title>
+                            </mat-card-header>
 
-                            <button routerLink="/post/{{post.id}}">
-                                Details
-                            </button>
-                        </div>
+                            <div class="example-button-row">
+                                <mat-card-actions>
+                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                        Details
+                                    </button>
+                                </mat-card-actions>
+                            </div>
+                        </mat-card>
                     </ng-container>
                 </div>
 
@@ -105,15 +129,23 @@
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
-                        <div *ngIf="post.likes && post.likes.includes(user.email)">
-                            <h3>
-                                {{post.title}}
-                            </h3>
+                        <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <h3>
+                                        {{post.title}}
+                                    </h3>
+                                </mat-card-title>
+                            </mat-card-header>
 
-                            <button routerLink="/post/{{post.id}}">
-                                Details
-                            </button>
-                        </div>
+                            <div class="example-button-row">
+                                <mat-card-actions>
+                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                        Details
+                                    </button>
+                                </mat-card-actions>
+                            </div>
+                        </mat-card>
                     </ng-container>
                 </div>
             </ng-container>
