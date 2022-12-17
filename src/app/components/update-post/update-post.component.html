@@ -1,22 +1,26 @@
-<form [formGroup]="updatePostForm" (ngSubmit)="onSubmit()" novalidate>
-    <mat-form-field>
-        <input matInput type="text" formControlName="title" #title class="form-control" placeholder="Title" required>
-    </mat-form-field>
+<section>
+    <form [formGroup]="updatePostForm" (ngSubmit)="onSubmit()" novalidate>
+        <mat-form-field>
+            <input matInput type="text" formControlName="title" #title class="form-control" placeholder="Title"
+                required>
+        </mat-form-field>
 
-    <br>
+        <br>
 
-    <mat-form-field>
-        <input matInput type="text" formControlName="content" #content class="form-control" placeholder="Content" required>
-    </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" formControlName="content" #content class="form-control" placeholder="Content"
+                required>
+        </mat-form-field>
 
-    <div class="example-button-row">
-        <button mat-raised-button color="accent" type="submit"
-            [disabled]="!title.value.trim() || !content.value.trim()">
-            Save
-        </button>
+        <div class="example-button-row">
+            <button mat-raised-button color="accent" type="submit"
+                [disabled]="!title.value.trim() || !content.value.trim()">
+                Save
+            </button>
 
-        <button mat-raised-button color="accent" type="button" (click)="returnToDetails()" class="btn btn-danger">
-            Cancel
-        </button>
-    </div>
-</form>
+            <button mat-raised-button color="accent" type="button" (click)="returnToDetails()" class="btn btn-danger">
+                Cancel
+            </button>
+        </div>
+    </form>
+</section>

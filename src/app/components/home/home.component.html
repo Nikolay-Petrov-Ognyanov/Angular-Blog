@@ -1,5 +1,5 @@
 <section>
-    <ng-container *ngIf="posts">
+    <ng-container *ngIf="posts.length > 0">
         <h1>
             All posts
         </h1>
@@ -11,7 +11,7 @@
                 </mat-card-title>
             </mat-card-header>
             
-            <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Title Image">
+            <!-- <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Title Image"> -->
             
             <div class="example-button-row" class="centered">
                 <mat-card-actions>
@@ -23,7 +23,7 @@
         </mat-card>
     </ng-container>
 
-    <h1 *ngIf="!posts">
+    <h1 *ngIf="posts.length === 0">
         No posts yet
     </h1>
 </section>
