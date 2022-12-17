@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../post.model';
+import { Post } from '../models/post.model';
 import { PostService } from '../services/post.service';
 import { AngularFirestore } from "@angular/fire/compat/firestore"
 import { ActivatedRoute } from '@angular/router';
