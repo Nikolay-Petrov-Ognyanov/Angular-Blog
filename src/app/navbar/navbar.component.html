@@ -1,33 +1,37 @@
 <nav>
-    <button routerLink="/">
-        Home
-    </button>
+    <section>
+        <div class="example-button-row">
+            <button mat-raised-button color="accent" routerLink="/">
+                Home
+            </button>
 
-    <ng-container *ngIf="!isLoggedIn">
-        <button routerLink="/login">
-            Login
-        </button>
-        
-        <button routerLink="/register">
-            Register
-        </button>
-    </ng-container>
+            <ng-container *ngIf="!isLoggedIn">
+                <button mat-raised-button color="accent" routerLink="/login">
+                    Login
+                </button>
 
-    <ng-container *ngIf="isLoggedIn">
-        <button routerLink="/create">
-            Create
-        </button>
-
-        <ng-container *ngFor="let user of users">
-            <ng-container *ngIf="user.email === userEmail" >
-                <button routerLink="/user/{{user.id}}">
-                    Profile
+                <button mat-raised-button color="accent" routerLink="/register">
+                    Register
                 </button>
             </ng-container>
-        </ng-container>
 
-        <button (click)="logout()" >
-            Logout
-        </button>
-    </ng-container>
+            <ng-container *ngIf="isLoggedIn">
+                <button mat-raised-button color="accent" routerLink="/create">
+                    Create
+                </button>
+
+                <ng-container *ngFor="let user of users">
+                    <ng-container *ngIf="user.email === userEmail">
+                        <button mat-raised-button color="accent" routerLink="/user/{{user.id}}">
+                            Profile
+                        </button>
+                    </ng-container>
+                </ng-container>
+
+                <button mat-raised-button color="accent" (click)="logout()">
+                    Logout
+                </button>
+            </ng-container>
+        </div>
+    </section>
 </nav>

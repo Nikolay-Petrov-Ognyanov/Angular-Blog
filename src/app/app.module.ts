@@ -4,6 +4,8 @@ import { AngularFireModule } from "@angular/fire/compat"
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +46,9 @@ import { ProfileComponent } from './profile/profile.component';
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [
     FirebaseService,
