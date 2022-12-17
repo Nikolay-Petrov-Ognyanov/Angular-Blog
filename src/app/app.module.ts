@@ -17,9 +17,6 @@ import { PostService } from './services/post.service';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { ProfileComponent } from './profile/profile.component';
-import { AuthorService } from './services/author.service';
-import { IsLoggedInService } from './services/is-logged-in.service';
-import { IsLoggedOutService } from './services/is-logged-out.service';
 
 @NgModule({
   declarations: [
@@ -51,10 +48,7 @@ import { IsLoggedOutService } from './services/is-logged-out.service';
   ],
   providers: [
     FirebaseService,
-    PostService,
-    AuthorService,
-    IsLoggedInService,
-    IsLoggedOutService
+    PostService
   ],
   bootstrap: [AppComponent]
 })

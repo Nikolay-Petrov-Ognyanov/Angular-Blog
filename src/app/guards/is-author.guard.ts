@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
-  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
@@ -11,8 +10,7 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorService implements CanActivate {
-
+export class IsAuthorGuard implements CanActivate {
   constructor(
     private router: Router,
     public angularFirestore: AngularFirestore
@@ -22,7 +20,7 @@ export class AuthorService implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
+    state: RouterStateSnapshot
   ): any {
     const postId: any = route.paramMap.get("id")
     const postRef = this.angularFirestore.collection('posts').doc(postId)

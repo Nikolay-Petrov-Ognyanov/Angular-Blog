@@ -7,9 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { ProfileComponent } from './profile/profile.component';
-import { AuthorService } from './services/author.service';
-import { IsLoggedOutService } from './services/is-logged-out.service';
-import { IsLoggedInService } from './services/is-logged-in.service';
+import { IsLoggedOutGuard } from './guards/is-logged-out.guard';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
+import { IsAuthorGuard } from './guards/is-author.guard';
 
 const routes: Routes = [
   {
@@ -20,22 +20,22 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent,
-    canActivate: [IsLoggedOutService]
+    canActivate: [IsLoggedOutGuard]
   },
   {
     path: "login",
     component: LoginComponent,
-    canActivate: [IsLoggedOutService]
+    canActivate: [IsLoggedOutGuard]
   },
   {
     path: "create",
     component: CreatePostComponent,
-    canActivate: [IsLoggedInService]
+    canActivate: [IsLoggedInGuard]
   },
   {
     path: "user/:id",
     component: ProfileComponent,
-    canActivate: [IsLoggedInService]
+    canActivate: [IsLoggedInGuard]
   },
   {
     path: "post/:id",
@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path: "post/:id/update",
     component: UpdatePostComponent,
-    canActivate: [AuthorService]
+    canActivate: [IsAuthorGuard]
   },
   {
     path: "**",
