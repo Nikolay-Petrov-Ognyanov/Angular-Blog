@@ -1,4 +1,4 @@
-<ng-container *ngIf="post">
+<section *ngIf="post">
     <mat-card class="example-card">
         <mat-card-header>
             <mat-card-title>
@@ -88,8 +88,7 @@
                     <ng-container *ngIf="user.email === currentUserEmail">
                         <div class="example-button-row">
                             <mat-card-actions>
-                                <button mat-raised-button color="primary" 
-                                (click)="likePost(user.id)"
+                                <button mat-raised-button color="primary" (click)="likePost(user.id)"
                                     [disabled]="postIsLikedByThisUser">
                                     Like
                                 </button>
@@ -105,4 +104,4 @@
             </ng-container>
         </ng-container>
     </mat-card>
-</ng-container>
+</section>

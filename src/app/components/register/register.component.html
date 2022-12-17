@@ -1,53 +1,55 @@
-<form #form="ngForm" (ngSubmit)="onRegister(form)" *ngIf="!isLoggedIn">
-    <h2>
-        Register
-    </h2>
+<section>
+    <form #form="ngForm" (ngSubmit)="onRegister(form)">
+        <h2>
+            Register
+        </h2>
 
-    <mat-form-field>
-        <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-    </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </mat-form-field>
 
-    <br>
+        <br>
 
-    <mat-form-field>
-        <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel
-            required [minlength]="6">
-    </mat-form-field>
-    
-    <ng-container *ngIf="email.touched">
-        <p class="error" *ngIf="email.errors?.['required']">
-            Email is required!
+        <mat-form-field>
+            <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel
+                required [minlength]="6">
+        </mat-form-field>
+
+        <ng-container *ngIf="email.touched">
+            <p class="error" *ngIf="email.errors?.['required']">
+                Email is required!
+            </p>
+
+            <p class="error" *ngIf="email.errors?.['pattern']">
+                Email is not valid!
+            </p>
+        </ng-container>
+
+        <ng-container *ngIf="password.touched">
+            <p class="error" *ngIf="password.errors?.['required']">
+                Password is required!
+            </p>
+
+            <p class="error" *ngIf="password.errors?.['minlength']">
+                Password must be at least 6 characters long!
+            </p>
+        </ng-container>
+
+        <br>
+
+        <button mat-raised-button color="accent" [disabled]="form.invalid">
+            Register
+        </button>
+
+        <br>
+
+        <p>
+            Already have an account?
+
+            <a routerLink="/login">Login</a>
+
+            instead.
         </p>
-
-        <p class="error" *ngIf="email.errors?.['pattern']">
-            Email is not valid!
-        </p>
-    </ng-container>
-
-    <ng-container *ngIf="password.touched">
-        <p class="error" *ngIf="password.errors?.['required']">
-            Password is required!
-        </p>
-
-        <p class="error" *ngIf="password.errors?.['minlength']">
-            Password must be at least 6 characters long!
-        </p>
-    </ng-container>
-
-    <br>
-
-    <button mat-raised-button color="accent" [disabled]="form.invalid">
-        Register
-    </button>
-
-    <br>
-
-    <p>
-        Already have an account?
-
-        <a routerLink="/login">Login</a>
-
-        instead.
-    </p>
-</form>
+    </form>
+</section>

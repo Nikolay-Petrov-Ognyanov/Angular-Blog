@@ -1,28 +1,32 @@
-<form [formGroup]="createPostForm" novalidate>
-    <mat-form-field>
-        <input matInput type="text" formControlName="title" #title class="form-control" placeholder="Title" required>
-    </mat-form-field>
+<section>
+    <form [formGroup]="createPostForm" novalidate>
+        <mat-form-field>
+            <input matInput type="text" formControlName="title" #title class="form-control" placeholder="Title"
+                required>
+        </mat-form-field>
 
-    <br>
+        <br>
 
-    <mat-form-field>
-        <input matInput type="text" formControlName="content" #content class="form-control" placeholder="Content" required>
-    </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" formControlName="content" #content class="form-control" placeholder="Content"
+                required>
+        </mat-form-field>
 
-    <br>
+        <br>
 
-    <ng-container *ngFor="let user of users">
-        <ng-container *ngIf="user.email === currentUserEmail">
-            <div class="example-button-row">
-                <button mat-raised-button color="accent" (click)="onSubmit(user.id)"
-                    [disabled]="!title.value.trim() || !content.value.trim()">
-                    Publish
-                </button>
+        <ng-container *ngFor="let user of users">
+            <ng-container *ngIf="user.email === currentUserEmail">
+                <div class="example-button-row">
+                    <button mat-raised-button color="accent" (click)="onSubmit(user.id)"
+                        [disabled]="!title.value.trim() || !content.value.trim()">
+                        Publish
+                    </button>
 
-                <button mat-raised-button color="accent" type="reset" class="btn btn-danger">
-                    Reset
-                </button>
-            </div>
+                    <button mat-raised-button color="accent" type="reset" class="btn btn-danger">
+                        Reset
+                    </button>
+                </div>
+            </ng-container>
         </ng-container>
-    </ng-container>
-</form>
+    </form>
+</section>

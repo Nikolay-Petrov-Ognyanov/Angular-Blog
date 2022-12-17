@@ -1,4 +1,4 @@
-<ng-container *ngIf="users">
+<section *ngIf="users">
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="userFromRoute && user.email === userFromRoute.email">
             <h1>
@@ -7,7 +7,7 @@
 
             <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
 
-                <div *ngIf="!!user.posts == false && !!user.likes == false">
+                <div class="split left" *ngIf="!!user.posts == false && !!user.likes == false">
                     <h2>
                         {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
                     </h2>
@@ -19,9 +19,9 @@
                     </h2>
                 </div>
 
-                <div *ngIf="!!user.posts == true">
+                <div class="split left" *ngIf="!!user.posts == true">
                     <h2>
-                        Posts:
+                        Posts
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
@@ -45,15 +45,15 @@
                     </ng-container>
                 </div>
 
-                <div *ngIf="!!user.posts == true && !!user.likes == false">
+                <div class="split right" *ngIf="!!user.posts == true && !!user.likes == false">
                     <h2>
                         {{user.email.split("@")[0]}} hasn't liked any posts yet.
                     </h2>
                 </div>
 
-                <div *ngIf="!!user.likes == true">
+                <div class="split right" *ngIf="!!user.likes == true">
                     <h2>
-                        Likes:
+                        Likes
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
@@ -85,15 +85,15 @@
                     </h2>
                 </div>
 
-                <div *ngIf="!!user.posts == false && !!user.likes == true">
+                <div class="split left" *ngIf="!!user.posts == false && !!user.likes == true">
                     <h2>
                         You haven't created any posts yet.
                     </h2>
                 </div>
 
-                <div *ngIf="!!user.posts == true">
+                <div class="split left" *ngIf="!!user.posts == true">
                     <h2>
-                        Your posts:
+                        Your posts
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
@@ -117,15 +117,15 @@
                     </ng-container>
                 </div>
 
-                <div *ngIf="!!user.posts == true && !!user.likes == false">
+                <div class="split right" *ngIf="!!user.posts == true && !!user.likes == false">
                     <h2>
                         You haven't liked any posts yet.
                     </h2>
                 </div>
 
-                <div *ngIf="!!user.likes == true">
+                <div class="split right" *ngIf="!!user.likes == true">
                     <h2>
-                        Your likes:
+                        Your likes
                     </h2>
 
                     <ng-container *ngFor="let post of posts">
@@ -151,4 +151,4 @@
             </ng-container>
         </ng-container>
     </ng-container>
-</ng-container>
+</section>

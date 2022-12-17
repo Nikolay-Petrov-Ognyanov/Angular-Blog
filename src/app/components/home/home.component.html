@@ -1,17 +1,18 @@
-<h1>
-    All posts
-</h1>
+<section>
+    <ng-container *ngIf="posts">
+        <h1>
+            All posts
+        </h1>
 
-<ng-container *ngIf="posts">
         <mat-card *ngFor="let post of posts" class="example-card">
             <mat-card-header>
                 <mat-card-title>
                     {{post.title}}
                 </mat-card-title>
             </mat-card-header>
-
+            
             <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Title Image">
-
+            
             <div class="example-button-row">
                 <mat-card-actions>
                     <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
@@ -20,4 +21,9 @@
                 </mat-card-actions>
             </div>
         </mat-card>
-</ng-container>
+    </ng-container>
+
+    <h1 *ngIf="!posts">
+        No posts yet
+    </h1>
+</section>

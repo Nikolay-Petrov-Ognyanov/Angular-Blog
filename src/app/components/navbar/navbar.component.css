@@ -1,7 +1,3 @@
-section {
-    display: table;
-}
-
 .example-label {
     display: table-cell;
     font-size: 14px;
@@ -13,7 +9,6 @@ section {
     display: table-cell;
     max-width: 600px;
 }
-
 .example-button-row .mat-mdc-button-base {
     margin: 8px 8px 8px 0;
 }
