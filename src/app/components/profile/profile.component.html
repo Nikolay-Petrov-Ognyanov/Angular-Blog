@@ -7,20 +7,20 @@
 
             <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
 
-                <div class="split left" *ngIf="!!user.posts == false && !!user.likes == false">
-                    <h2>
+                <div *ngIf="!!user.posts == false && !!user.likes == false">
+                    <h2 style="text-align: center;">
                         {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
                     </h2>
                 </div>
 
                 <div *ngIf="!!user.posts == false && !!user.likes == true">
-                    <h2>
+                    <h2 style="text-align: center;">
                         {{user.email.split("@")[0]}} hasn't created any posts yet.
                     </h2>
                 </div>
 
-                <div class="split left" *ngIf="!!user.posts == true">
-                    <h2>
+                <div *ngIf="!!user.posts == true">
+                    <h2 style="text-align: center;">
                         Posts
                     </h2>
 
@@ -45,14 +45,14 @@
                     </ng-container>
                 </div>
 
-                <div class="split right" *ngIf="!!user.posts == true && !!user.likes == false">
-                    <h2>
+                <div *ngIf="!!user.posts == true && !!user.likes == false">
+                    <h2 style="text-align: center;">
                         {{user.email.split("@")[0]}} hasn't liked any posts yet.
                     </h2>
                 </div>
 
-                <div class="split right" *ngIf="!!user.likes == true">
-                    <h2>
+                <div *ngIf="!!user.likes == true">
+                    <h2 style="text-align: center;">
                         Likes
                     </h2>
 
@@ -80,19 +80,19 @@
 
             <ng-container *ngIf="userFromRoute.email === currentUser.email">
                 <div *ngIf="!!user.posts == false && !!user.likes == false">
-                    <h2>
+                    <h2 style="text-align: center;">
                         You haven't liked or created any posts yet.
                     </h2>
                 </div>
 
-                <div class="split left" *ngIf="!!user.posts == false && !!user.likes == true">
-                    <h2>
+                <div *ngIf="!!user.posts == false && !!user.likes == true">
+                    <h2 style="text-align: center;">
                         You haven't created any posts yet.
                     </h2>
                 </div>
 
-                <div class="split left" *ngIf="!!user.posts == true">
-                    <h2>
+                <div *ngIf="!!user.posts == true">
+                    <h2 style="text-align: center;">
                         Your posts
                     </h2>
 
@@ -117,14 +117,14 @@
                     </ng-container>
                 </div>
 
-                <div class="split right" *ngIf="!!user.posts == true && !!user.likes == false">
-                    <h2>
+                <div *ngIf="!!user.posts == true && !!user.likes == false">
+                    <h2 style="text-align: center;">
                         You haven't liked any posts yet.
                     </h2>
                 </div>
 
-                <div class="split right" *ngIf="!!user.likes == true">
-                    <h2>
+                <div *ngIf="!!user.likes == true">
+                    <h2 style="text-align: center;">
                         Your likes
                     </h2>
 
