@@ -1,17 +1,19 @@
-<form #form="ngForm" (ngSubmit)="onRegister(form)" *ngIf="!isLoggedIn">
+<form #form="ngForm" (ngSubmit)="onLogin(form)" *ngIf="!isLoggedIn">
     <h2>
-        Register
+        Login
     </h2>
 
-    <div>
-        <input placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
+    <mat-form-field>
+        <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-    </div>
+    </mat-form-field>
 
-    <div>
-        <input placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel required
+    <br>
+
+    <mat-form-field>
+        <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel required
             [minlength]="6">
-    </div>
+    </mat-form-field>
 
     <ng-container *ngIf="email.touched">
         <p class="error" *ngIf="email.errors?.['required']">
@@ -33,15 +35,19 @@
         </p>
     </ng-container>
 
-    <button [disabled]="form.invalid">
-        Register
+    <br>
+
+    <button mat-raised-button color="accent" [disabled]="form.invalid">
+        Login
     </button>
 
-    <div>
-        Already have an account?
+    <br>
 
-        <a routerLink="/login">Login</a>
+    <p>
+        Don't have an account?
+
+        <a routerLink="/register">Register</a>
 
         instead.
-    </div>
+    </p>
 </form>

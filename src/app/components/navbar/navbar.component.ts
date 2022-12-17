@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-navbar',

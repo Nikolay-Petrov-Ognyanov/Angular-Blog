@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Post } from '../models/post.model';
-import { PostService } from '../services/post.service';
-import { User } from '../models/user.model';
+import { Post } from '../../models/post.model';
+import { PostService } from '../../services/post.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-create-post',

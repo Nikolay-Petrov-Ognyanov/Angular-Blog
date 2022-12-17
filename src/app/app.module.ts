@@ -8,19 +8,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 import { FirebaseService } from './services/firebase.service';
-import { CreatePostComponent } from './create-post/create-post.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PostService } from './services/post.service';
-import { PostDetailsComponent } from './post-details/post-details.component';
-import { UpdatePostComponent } from './update-post/update-post.component';
-import { ProfileComponent } from './profile/profile.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
+import { UpdatePostComponent } from './components/update-post/update-post.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
     FirebaseService,

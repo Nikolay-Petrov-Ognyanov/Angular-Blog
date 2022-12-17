@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { User } from '../models/user.model';
+import { PostService } from '../../services/post.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-post-details',
