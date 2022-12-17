@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +51,8 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [
     FirebaseService,

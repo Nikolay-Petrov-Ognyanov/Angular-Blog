@@ -1,10 +1,11 @@
 <ng-container *ngIf="users">
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="userFromRoute && user.email === userFromRoute.email">
+            <h1>
+                {{user.email.split("").shift().toUpperCase() + user.email.split("@")[0].substring(1)}}'s profile
+            </h1>
+
             <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
-                <h1>
-                    {{user.email.split("@")[0]}}'s profile
-                </h1>
 
                 <div *ngIf="!!user.posts == false && !!user.likes == false">
                     <h2>
@@ -62,10 +63,6 @@
             </ng-container>
 
             <ng-container *ngIf="userFromRoute.email === currentUser.email">
-                <h1>
-                    {{user.email.split("@")[0]}}'s profile
-                </h1>
-
                 <div *ngIf="!!user.posts == false && !!user.likes == false">
                     <h2>
                         You haven't liked or created any posts yet.

@@ -88,7 +88,8 @@
                     <ng-container *ngIf="user.email === currentUserEmail">
                         <div class="example-button-row">
                             <mat-card-actions>
-                                <button mat-raised-button color="primary" (click)="likePost(user.id)"
+                                <button mat-raised-button color="primary" 
+                                (click)="likePost(user.id)"
                                     [disabled]="postIsLikedByThisUser">
                                     Like
                                 </button>

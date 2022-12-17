@@ -1,10 +1,14 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>
+        <span *ngIf="!isLoggedIn">
             Welcome!
         </span>
 
-        <span class="example-spacer" ></span>
+        <span *ngIf="isLoggedIn">
+            Welcome, {{userEmail.split("").shift().toUpperCase() + userEmail.split("@")[0].substring(1)}}!
+        </span>
+
+        <span class="example-spacer"></span>
 
         <nav>
             <section>
