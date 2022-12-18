@@ -40,7 +40,7 @@
 .created-posts {
     margin: 4px, 4px;
     padding: 4px;
-    background-color: rgba(99, 96, 96, 0.547);
+    /* background-color: rgba(99, 96, 96, 0.547); */
     border-radius: 20px;
     width: 500px;
     height: 400px;

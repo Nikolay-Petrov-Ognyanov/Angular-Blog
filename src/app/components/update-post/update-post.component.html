@@ -1,14 +1,14 @@
 <section>
     <form [formGroup]="updatePostForm" (ngSubmit)="onSubmit()" novalidate>
         <mat-form-field>
-            <input matInput type="text" formControlName="title" #title class="form-control" placeholder="Title"
+            <input matInput type="text" formControlName="title" #title class="centered" placeholder="Title"
                 required>
         </mat-form-field>
 
         <br>
 
         <mat-form-field>
-            <input matInput type="text" formControlName="content" #content class="form-control" placeholder="Content"
+            <input matInput type="text" formControlName="content" #content class="centered" placeholder="Content"
                 required>
         </mat-form-field>
 

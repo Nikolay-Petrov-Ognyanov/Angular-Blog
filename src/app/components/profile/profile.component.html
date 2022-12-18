@@ -28,7 +28,7 @@
                             <mat-card *ngIf="post.author == userFromRoute.email">
                                 <mat-card-header>
                                     <mat-card-title>
-                                        <h3>
+                                        <h3 style="text-align: center;">
                                             {{post.title}}
                                         </h3>
                                     </mat-card-title>
@@ -36,9 +36,11 @@
 
                                 <div class="example-button-row">
                                     <mat-card-actions>
-                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                            Details
-                                        </button>
+                                        <div class="centered">
+                                            <button mat-raised-button color="accent" routerLink="/post/{{post.id}}">
+                                                Details
+                                            </button>
+                                        </div>
                                     </mat-card-actions>
                                 </div>
                             </mat-card>
@@ -60,7 +62,7 @@
                             <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
                                 <mat-card-header>
                                     <mat-card-title>
-                                        <h3>
+                                        <h3 style="text-align: center;">
                                             {{post.title}}
                                         </h3>
                                     </mat-card-title>
@@ -68,9 +70,11 @@
 
                                 <div class="example-button-row">
                                     <mat-card-actions>
-                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                            Details
-                                        </button>
+                                        <div class="cenetered">
+                                            <button mat-raised-button color="accent" routerLink="/post/{{post.id}}">
+                                                Details
+                                            </button>
+                                        </div>
                                     </mat-card-actions>
                                 </div>
                             </mat-card>
@@ -101,7 +105,7 @@
                             <mat-card *ngIf="post.author == userFromRoute.email">
                                 <mat-card-header>
                                     <mat-card-title>
-                                        <h3>
+                                        <h3 style="text-align: center;">
                                             {{post.title}}
                                         </h3>
                                     </mat-card-title>
@@ -109,9 +113,11 @@
 
                                 <div class="example-button-row">
                                     <mat-card-actions>
-                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                            Details
-                                        </button>
+                                        <div class="cenetered">
+                                            <button mat-raised-button color="accent" routerLink="/post/{{post.id}}">
+                                                Details
+                                            </button>
+                                        </div>
                                     </mat-card-actions>
                                 </div>
                             </mat-card>
@@ -133,7 +139,7 @@
                             <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
                                 <mat-card-header>
                                     <mat-card-title>
-                                        <h3>
+                                        <h3 style="text-align: center;">
                                             {{post.title}}
                                         </h3>
                                     </mat-card-title>
@@ -141,9 +147,11 @@
 
                                 <div class="example-button-row">
                                     <mat-card-actions>
-                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                            Details
-                                        </button>
+                                        <div class="cenetered">
+                                            <button mat-raised-button color="accent" routerLink="/post/{{post.id}}">
+                                                Details
+                                            </button>
+                                        </div>
                                     </mat-card-actions>
                                 </div>
                             </mat-card>

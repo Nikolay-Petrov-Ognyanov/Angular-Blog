@@ -78,3 +78,7 @@ mat-card-content {
 .example-button-row .mat-mdc-button-base {
     margin: 8px 8px 8px 0;
 }
+
+.mat-form-field {
+    margin: 0 auto;
+}

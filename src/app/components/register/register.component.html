@@ -1,20 +1,23 @@
 <section>
+    <div class="centered">
     <form #form="ngForm" (ngSubmit)="onRegister(form)">
-        <h2>
+        <h2 class="centered">
             Register
         </h2>
 
-        <mat-form-field>
-            <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-        </mat-form-field>
-
-        <br>
-
-        <mat-form-field>
-            <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel
-                required [minlength]="6">
-        </mat-form-field>
+        
+            <mat-form-field>
+                <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel class="centered"
+                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            </mat-form-field>
+        
+            <br>
+        
+            <mat-form-field>
+                <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel class="centered"
+                    required [minlength]="6">
+            </mat-form-field>
+        
 
         <ng-container *ngIf="email.touched">
             <p class="error" *ngIf="email.errors?.['required']">
@@ -38,18 +41,21 @@
 
         <br>
 
-        <button mat-raised-button color="accent" [disabled]="form.invalid">
-            Register
-        </button>
-
-        <br>
-
-        <p>
-            Already have an account?
-
-            <a routerLink="/login">Login</a>
-
-            instead.
-        </p>
-    </form>
+        <div class="example-button-row">
+            <button mat-raised-button color="accent" [disabled]="form.invalid">
+                Register
+            </button>
+        </div>
+            
+            <br>
+            
+            <p>
+                Already have an account?
+                
+                <a routerLink="/login">Login</a>
+                
+                instead.
+            </p>
+        </form>
+    </div>
 </section>

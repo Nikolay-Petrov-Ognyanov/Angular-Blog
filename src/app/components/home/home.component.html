@@ -1,29 +1,34 @@
-<h1 class="centered">
-    All posts
-</h1>
-<section>
-    <ng-container *ngIf="posts && posts.length > 0">
+<div class="centered">
 
-        <mat-card *ngFor="let post of posts" class="example-card">
-            <mat-card-header>
-                <mat-card-title>
-                    {{post.title}}
-                </mat-card-title>
-            </mat-card-header>
+    <h1 class="centered" *ngIf="posts && posts.length > 0">
+        All posts
+    </h1>
 
-            <!-- <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Title Image"> -->
+    <section>
+        <ng-container *ngIf="posts && posts.length > 0">
+            <mat-card *ngFor="let post of posts" class="example-card">
+                <div class="centered">
+                    <mat-card-header>
+                        <mat-card-title>
+                            {{post.title}}
+                        </mat-card-title>
+                    </mat-card-header>
 
-            <div class="example-button-row" class="centered">
-                <mat-card-actions>
-                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                        Details
-                    </button>
-                </mat-card-actions>
-            </div>
-        </mat-card>
-    </ng-container>
-</section>
+                    <!-- <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Title Image"> -->
 
-<h1 class="centered" *ngIf="posts && posts.length === 0">
-    No posts yet
-</h1>
+                    <div class="example-button-row">
+                        <mat-card-actions>
+                            <button mat-raised-button color="accent" routerLink="/post/{{post.id}}">
+                                Details
+                            </button>
+                        </mat-card-actions>
+                    </div>
+                </div>
+            </mat-card>
+        </ng-container>
+    </section>
+
+    <h1 class="centered" *ngIf="posts && posts.length === 0">
+        No posts yet
+    </h1>
+</div>

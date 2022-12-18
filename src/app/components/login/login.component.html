@@ -1,57 +1,61 @@
 <section>
-    <form #form="ngForm" (ngSubmit)="onLogin(form)">
-        <h2 class="centered">
-            Login
-        </h2>
+    <div class="centered">
 
-        <mat-form-field>
-            <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-        </mat-form-field>
 
-        <br>
-
-        <mat-form-field>
-            <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel
-                required [minlength]="6">
-        </mat-form-field>
-
-        <ng-container *ngIf="email.touched">
-            <p class="error" *ngIf="email.errors?.['required']">
-                Email is required!
-            </p>
-
-            <p class="error" *ngIf="email.errors?.['pattern']">
-                Email is not valid!
-            </p>
-        </ng-container>
-
-        <ng-container *ngIf="password.touched">
-            <p class="error" *ngIf="password.errors?.['required']">
-                Password is required!
-            </p>
-
-            <p class="error" *ngIf="password.errors?.['minlength']">
-                Password must be at least 6 characters long!
-            </p>
-        </ng-container>
-
-        <br>
-
-        <div class="example-button-row">
-            <button mat-raised-button color="accent" [disabled]="form.invalid">
+        <form #form="ngForm" (ngSubmit)="onLogin(form)">
+            <h2 class="centered">
                 Login
-            </button>
-        </div>
+            </h2>
 
-        <br>
+            <mat-form-field>
+                <input matInput placeholder="Enter email" type="email" name="email" #email="ngModel" email ngModel class="centered"
+                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            </mat-form-field>
 
-        <p>
-            Don't have an account?
+            <br>
 
-            <a routerLink="/register">Register</a>
+            <mat-form-field>
+                <input matInput placeholder="Enter password" type="password" name="password" #password="ngModel" ngModel class="centered"
+                    required [minlength]="6">
+            </mat-form-field>
 
-            instead.
-        </p>
-    </form>
+            <ng-container *ngIf="email.touched">
+                <p class="error" *ngIf="email.errors?.['required']">
+                    Email is required!
+                </p>
+
+                <p class="error" *ngIf="email.errors?.['pattern']">
+                    Email is not valid!
+                </p>
+            </ng-container>
+
+            <ng-container *ngIf="password.touched">
+                <p class="error" *ngIf="password.errors?.['required']">
+                    Password is required!
+                </p>
+
+                <p class="error" *ngIf="password.errors?.['minlength']">
+                    Password must be at least 6 characters long!
+                </p>
+            </ng-container>
+
+            <br>
+
+            <div class="example-button-row">
+                <button mat-raised-button color="accent" [disabled]="form.invalid">
+                    Login
+                </button>
+            </div>
+
+            <br>
+
+            <p>
+                Don't have an account?
+
+                <a routerLink="/register">Register</a>
+
+                instead.
+            </p>
+        </form>
+    </div>
 </section>
