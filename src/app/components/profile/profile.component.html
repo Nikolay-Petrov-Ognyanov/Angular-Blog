@@ -9,13 +9,13 @@
                 <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
                     <div *ngIf="!!user.posts == false && !!user.likes == false">
                         <h2 style="text-align: center;">
-                            {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
+                            {{user.email.split("@")[0]}} hasn't liked or created any posts yet
                         </h2>
                     </div>
 
                     <div class="created-posts" *ngIf="!!user.posts == false && !!user.likes == true">
                         <h2 style="text-align: center;">
-                            {{user.email.split("@")[0]}} hasn't created any posts yet.
+                            {{user.email.split("@")[0]}} hasn't created any posts yet
                         </h2>
                     </div>
 
@@ -49,7 +49,7 @@
 
                     <div class="liked-posts" *ngIf="!!user.posts == true && !!user.likes == false">
                         <h2 style="text-align: center;">
-                            {{user.email.split("@")[0]}} hasn't liked any posts yet.
+                            {{user.email.split("@")[0]}} hasn't liked any posts yet
                         </h2>
                     </div>
 
@@ -86,7 +86,7 @@
                 <ng-container *ngIf="userFromRoute.email === currentUser.email">
                     <div *ngIf="!!user.posts == false && !!user.likes == false">
                         <h2 style="text-align: center;">
-                            You haven't liked or created any posts yet.
+                            You haven't liked or created any posts yet
                         </h2>
                     </div>
 
