@@ -1,154 +1,156 @@
 <section *ngIf="users">
     <ng-container *ngFor="let user of users">
         <ng-container *ngIf="userFromRoute && user.email === userFromRoute.email">
-            <h1>
+            <h1 class="centered">
                 {{user.email.split("").shift().toUpperCase() + user.email.split("@")[0].substring(1)}}'s profile
             </h1>
 
-            <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
+            <section class="profile-posts">
+                <ng-container *ngIf="userFromRoute && userFromRoute.email !== currentUser.email">
+                    <div *ngIf="!!user.posts == false && !!user.likes == false">
+                        <h2 style="text-align: center;">
+                            {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
+                        </h2>
+                    </div>
 
-                <div *ngIf="!!user.posts == false && !!user.likes == false">
-                    <h2 style="text-align: center;">
-                        {{user.email.split("@")[0]}} hasn't liked or created any posts yet.
-                    </h2>
-                </div>
+                    <div class="created-posts" *ngIf="!!user.posts == false && !!user.likes == true">
+                        <h2 style="text-align: center;">
+                            {{user.email.split("@")[0]}} hasn't created any posts yet.
+                        </h2>
+                    </div>
 
-                <div *ngIf="!!user.posts == false && !!user.likes == true">
-                    <h2 style="text-align: center;">
-                        {{user.email.split("@")[0]}} hasn't created any posts yet.
-                    </h2>
-                </div>
+                    <div class="created-posts" *ngIf="!!user.posts == true">
+                        <h2 style="text-align: center;">
+                            Posts
+                        </h2>
 
-                <div *ngIf="!!user.posts == true">
-                    <h2 style="text-align: center;">
-                        Posts
-                    </h2>
+                        <ng-container *ngFor="let post of posts">
+                            <mat-card *ngIf="post.author == userFromRoute.email">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <h3>
+                                            {{post.title}}
+                                        </h3>
+                                    </mat-card-title>
+                                </mat-card-header>
 
-                    <ng-container *ngFor="let post of posts">
-                        <mat-card *ngIf="post.author == userFromRoute.email">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <h3>
-                                        {{post.title}}
-                                    </h3>
-                                </mat-card-title>
-                            </mat-card-header>
+                                <div class="example-button-row">
+                                    <mat-card-actions>
+                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                            Details
+                                        </button>
+                                    </mat-card-actions>
+                                </div>
+                            </mat-card>
+                        </ng-container>
+                    </div>
 
-                            <div class="example-button-row">
-                                <mat-card-actions>
-                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                        Details
-                                    </button>
-                                </mat-card-actions>
-                            </div>
-                        </mat-card>
-                    </ng-container>
-                </div>
+                    <div class="liked-posts" *ngIf="!!user.posts == true && !!user.likes == false">
+                        <h2 style="text-align: center;">
+                            {{user.email.split("@")[0]}} hasn't liked any posts yet.
+                        </h2>
+                    </div>
 
-                <div *ngIf="!!user.posts == true && !!user.likes == false">
-                    <h2 style="text-align: center;">
-                        {{user.email.split("@")[0]}} hasn't liked any posts yet.
-                    </h2>
-                </div>
+                    <div class="liked-posts" *ngIf="!!user.likes == true">
+                        <h2 style="text-align: center;">
+                            Likes
+                        </h2>
 
-                <div *ngIf="!!user.likes == true">
-                    <h2 style="text-align: center;">
-                        Likes
-                    </h2>
+                        <ng-container *ngFor="let post of posts">
+                            <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <h3>
+                                            {{post.title}}
+                                        </h3>
+                                    </mat-card-title>
+                                </mat-card-header>
 
-                    <ng-container *ngFor="let post of posts">
-                        <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <h3>
-                                        {{post.title}}
-                                    </h3>
-                                </mat-card-title>
-                            </mat-card-header>
+                                <div class="example-button-row">
+                                    <mat-card-actions>
+                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                            Details
+                                        </button>
+                                    </mat-card-actions>
+                                </div>
+                            </mat-card>
+                        </ng-container>
+                    </div>
+                </ng-container>
 
-                            <div class="example-button-row">
-                                <mat-card-actions>
-                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                        Details
-                                    </button>
-                                </mat-card-actions>
-                            </div>
-                        </mat-card>
-                    </ng-container>
-                </div>
-            </ng-container>
 
-            <ng-container *ngIf="userFromRoute.email === currentUser.email">
-                <div *ngIf="!!user.posts == false && !!user.likes == false">
-                    <h2 style="text-align: center;">
-                        You haven't liked or created any posts yet.
-                    </h2>
-                </div>
+                <ng-container *ngIf="userFromRoute.email === currentUser.email">
+                    <div *ngIf="!!user.posts == false && !!user.likes == false">
+                        <h2 style="text-align: center;">
+                            You haven't liked or created any posts yet.
+                        </h2>
+                    </div>
 
-                <div *ngIf="!!user.posts == false && !!user.likes == true">
-                    <h2 style="text-align: center;">
-                        You haven't created any posts yet.
-                    </h2>
-                </div>
+                    <div class="created-posts" *ngIf="!!user.posts == false && !!user.likes == true">
+                        <h2 style="text-align: center;">
+                            You haven't created any posts yet.
+                        </h2>
+                    </div>
 
-                <div *ngIf="!!user.posts == true">
-                    <h2 style="text-align: center;">
-                        Your posts
-                    </h2>
+                    <div class="created-posts" *ngIf="!!user.posts == true">
+                        <h2 style="text-align: center;">
+                            Your posts
+                        </h2>
 
-                    <ng-container *ngFor="let post of posts">
-                        <mat-card *ngIf="post.author == userFromRoute.email">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <h3>
-                                        {{post.title}}
-                                    </h3>
-                                </mat-card-title>
-                            </mat-card-header>
+                        <ng-container *ngFor="let post of posts">
+                            <mat-card *ngIf="post.author == userFromRoute.email">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <h3>
+                                            {{post.title}}
+                                        </h3>
+                                    </mat-card-title>
+                                </mat-card-header>
 
-                            <div class="example-button-row">
-                                <mat-card-actions>
-                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                        Details
-                                    </button>
-                                </mat-card-actions>
-                            </div>
-                        </mat-card>
-                    </ng-container>
-                </div>
+                                <div class="example-button-row">
+                                    <mat-card-actions>
+                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                            Details
+                                        </button>
+                                    </mat-card-actions>
+                                </div>
+                            </mat-card>
+                        </ng-container>
+                    </div>
 
-                <div *ngIf="!!user.posts == true && !!user.likes == false">
-                    <h2 style="text-align: center;">
-                        You haven't liked any posts yet.
-                    </h2>
-                </div>
+                    <div class="liked-posts" *ngIf="!!user.posts == true && !!user.likes == false">
+                        <h2 style="text-align: center;">
+                            You haven't liked any posts yet.
+                        </h2>
+                    </div>
 
-                <div *ngIf="!!user.likes == true">
-                    <h2 style="text-align: center;">
-                        Your likes
-                    </h2>
+                    <div class="liked-posts" *ngIf="!!user.likes == true">
+                        <h2 style="text-align: center;">
+                            Your likes
+                        </h2>
 
-                    <ng-container *ngFor="let post of posts">
-                        <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <h3>
-                                        {{post.title}}
-                                    </h3>
-                                </mat-card-title>
-                            </mat-card-header>
+                        <ng-container *ngFor="let post of posts">
+                            <mat-card *ngIf="post.likes && post.likes.includes(user.email)">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <h3>
+                                            {{post.title}}
+                                        </h3>
+                                    </mat-card-title>
+                                </mat-card-header>
 
-                            <div class="example-button-row">
-                                <mat-card-actions>
-                                    <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
-                                        Details
-                                    </button>
-                                </mat-card-actions>
-                            </div>
-                        </mat-card>
-                    </ng-container>
-                </div>
-            </ng-container>
+                                <div class="example-button-row">
+                                    <mat-card-actions>
+                                        <button mat-raised-button color="primary" routerLink="/post/{{post.id}}">
+                                            Details
+                                        </button>
+                                    </mat-card-actions>
+                                </div>
+                            </mat-card>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </section>
         </ng-container>
     </ng-container>
 </section>

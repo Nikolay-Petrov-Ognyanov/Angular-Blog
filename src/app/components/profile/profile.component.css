@@ -38,3 +38,103 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+
+.profile-posts {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2%;
+}
+
+.profile-posts .liked-posts,
+.created-posts {
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: rgba(99, 96, 96, 0.547);
+    border-radius: 20px;
+    width: 500px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffeae7;
+}
+
+.profile-posts .liked-posts .section-title {
+    text-align: center;
+    color: white;
+}
+
+.profile-posts .created-posts .section-title {
+    text-align: center;
+    color: white;
+}
+
+.profile-posts .info {
+    padding: 20px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.853);
+    border-radius: 10%;
+    color: black;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.profile-posts .title {
+    font-size: 22px;
+    text-align: center;
+    height: 40%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+}
+
+.profile-posts .author {
+    font-size: 16px;
+}
+
+.profile-posts .genre {
+    text-align: left;
+}
+
+.profile-posts .see-more {
+    background-color: black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.profile-posts a {
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.no-post-in-profile {
+    font-style: italic;
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 30px;
+}
