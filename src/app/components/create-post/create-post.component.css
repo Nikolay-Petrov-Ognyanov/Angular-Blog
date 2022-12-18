@@ -5,15 +5,6 @@
     min-width: 120px;
 }
 
-.example-button-row {
-    display: table-cell;
-    max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-    margin: 8px 8px 8px 0;
-}
-
 .example-flex-container {
     display: flex;
     justify-content: space-between;
@@ -33,4 +24,10 @@
 .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
+}
+
+section {
+    display: table;
+    max-width: 700px;
+    margin: 2em auto;
 }

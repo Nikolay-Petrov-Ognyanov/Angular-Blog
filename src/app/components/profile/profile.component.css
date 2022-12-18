@@ -5,15 +5,6 @@
     min-width: 120px;
 }
 
-.example-button-row {
-    display: table-cell;
-    max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-    margin: 8px 8px 8px 0;
-}
-
 .example-flex-container {
     display: flex;
     justify-content: space-between;
@@ -86,45 +77,6 @@
     color: white;
 }
 
-.profile-posts .info {
-    padding: 20px;
-    margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    background-color: rgba(255, 255, 255, 0.853);
-    border-radius: 10%;
-    color: black;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
-
-.profile-posts .title {
-    font-size: 22px;
-    text-align: center;
-    height: 40%;
-    margin-bottom: 20px;
-    border-bottom: 1px solid black;
-}
-
-.profile-posts .author {
-    font-size: 16px;
-}
-
-.profile-posts .genre {
-    text-align: left;
-}
-
-.profile-posts .see-more {
-    background-color: black;
-    border-radius: 10px;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-}
-
 .profile-posts a {
     text-decoration: none;
     font-size: 14px;
@@ -132,9 +84,8 @@
     font-weight: bold;
 }
 
-.no-post-in-profile {
-    font-style: italic;
-    text-decoration: underline;
-    text-align: center;
-    margin-top: 30px;
+section {
+    display: table;
+    max-width: 700px;
+    margin: 2em auto;
 }

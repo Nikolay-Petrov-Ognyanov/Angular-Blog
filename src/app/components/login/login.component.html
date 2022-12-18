@@ -1,6 +1,6 @@
 <section>
     <form #form="ngForm" (ngSubmit)="onLogin(form)">
-        <h2>
+        <h2 class="centered">
             Login
         </h2>
 
@@ -38,9 +38,11 @@
 
         <br>
 
-        <button mat-raised-button color="accent" [disabled]="form.invalid">
-            Login
-        </button>
+        <div class="example-button-row">
+            <button mat-raised-button color="accent" [disabled]="form.invalid">
+                Login
+            </button>
+        </div>
 
         <br>
 
