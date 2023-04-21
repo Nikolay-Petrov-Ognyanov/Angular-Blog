@@ -22,6 +22,34 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Description
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This app is designed to resemble a web blog. The users are able to view, create, react to others' or edit/delete their own posts.
+
+## Guests
+
+The guests of the website are able to browse all the present posts, or to register and/or to login, in order to unlock the other features of the app.
+
+### Home
+
+Preview all available posts in chronological order.
+
+### Details
+
+Preview the selected post's title, author, description, time of creation, likes and dislikes.
+
+### Register and Login
+
+In order for the guests to be able to successfully register and/or log in, they are required to fill in a valid email and a password, consisting of at least 6 characters.
+
+## Users
+
+The logged-in users can add new posts, which they can also edit or delete. The features "Profile", "Like" and "Dislike" are available as well.
+
+### Create
+
+The users are able to create new posts, containing title and description.
+
+### Profile
+
+Logged-in users are able to view their own or others' profiles. They include the individual created and liked posts, divided into two tabs.
